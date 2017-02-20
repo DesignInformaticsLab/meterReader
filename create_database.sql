@@ -1,5 +1,5 @@
 -- psql -U postgres -d postgres -a -f create_database.sql
--- heroku pg:psql --app app_name < file.sql
+-- heroku pg:psql --app meterreader < create_database.sql
 DROP TABLE readmeter_model_table;
 
 CREATE TABLE readmeter_model_table(

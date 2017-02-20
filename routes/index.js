@@ -163,7 +163,7 @@ router.post('/training', function(req, res){
       var output = {'lossx':lossx,'lossw':lossw,'train_acc':train_acc};
       return output;
     };
-    var max_iter = 3000;
+    var max_iter = 2000;
     var output = [];
     for (var i = 0; i<max_iter; i++){
       output = load_and_step();
