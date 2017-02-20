@@ -101,7 +101,7 @@ router.post('/training', function(req, res){
   //console.log('probability that x is class 0: ' + prob.w[0]); // prints 0.50101
 
   var trainer = new convnetjs.SGDTrainer(net);
-  trainer.learning_rate = 0.01;
+  trainer.learning_rate = 0.1;
   trainer.momentum = 0.9;
   trainer.l2_decay= 0.001;
   trainer.batch_size = 20;
@@ -163,7 +163,7 @@ router.post('/training', function(req, res){
       var output = {'lossx':lossx,'lossw':lossw,'train_acc':train_acc};
       return output;
     };
-    var max_iter = 2000;
+    var max_iter = 1000;
     var output = [];
     for (var i = 0; i<max_iter; i++){
       output = load_and_step();
