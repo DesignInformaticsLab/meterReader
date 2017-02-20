@@ -8,8 +8,8 @@ function train(){
         }
         else{
             $.post('/training',{}, function(data) {
-                if(data!=null && data.length>0){
-                    console.log('model trained...');
+                if(data!=null && typeof(data)=="object"){
+                    console.log(data);
                 }
                 else{
                     console.log('training failed...');
@@ -21,7 +21,8 @@ function train(){
 
 function test(){
     // specify image address
-    var address = 'http://blog.otoro.net/assets/20160401/png/mnist_output_10.png';
+    var address = 'https://raw.githubusercontent.com/DesignInformaticsLab/meterReader/master/data/digit.png';
+
     //var img = new Image();
     //img.src = address;
     //var canvas = document.createElement('canvas');
