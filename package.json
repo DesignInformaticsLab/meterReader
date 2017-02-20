@@ -6,7 +6,7 @@
     "start": "node ./bin/www"
   },
   "engines": {
-    "node": "6.9.4"
+    "node": "6.9.5"
   },
   "dependencies": {
     "pg": "6.x",
