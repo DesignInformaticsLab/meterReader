@@ -45,7 +45,7 @@ function test(){
                 max = v > max? v:max;
                 if (max==v) {id = i;}
             }
-            $( "#result" ).append( "<p>The digit is"+ id + "</p>" );
+            $( "#result" ).append( "<p>The digit is "+ id + "</p>" );
         }
     });
 }
