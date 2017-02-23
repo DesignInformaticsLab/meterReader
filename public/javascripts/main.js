@@ -21,7 +21,7 @@ function train(){
 
 function test(){
     // specify image address
-    var address = 'https://raw.githubusercontent.com/DesignInformaticsLab/meterReader/master/data/number';
+    var address = 'https://raw.githubusercontent.com/DesignInformaticsLab/meterReader/master/data/number4.png';
 
     //var img = new Image();
     //img.src = address;
