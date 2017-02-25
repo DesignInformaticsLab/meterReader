@@ -51,7 +51,7 @@ router.post('/read', function(req, res){
       var ix = i*4;
       x.w[i] = image[ix]/255.0;
     }
-    x = convnetjs.augment(x, 24);
+    x = convnetjs.augment(x, 24, 1, 1);
 
     var output_probabilities_vol = net.forward(x);
     res.send( output_probabilities_vol );

@@ -46,6 +46,7 @@ function test(){
                 if (max==v) {id = i;}
             }
             console.log(pred);
+            $( "#result" ).append( "<p>Read from: "+ address + "</p>" );
             $( "#result" ).append( "<p>The digit is "+ id + "</p>" );
         }
     });
