@@ -23,10 +23,10 @@ router.post('/read', function(req, res){
 
   var layer_defs = [];
   layer_defs.push({type:'input', out_sx:24, out_sy:24, out_depth:1});
-  layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'});
+  layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:1, activation:'relu'});
   layer_defs.push({type:'pool', sx:2, stride:2});
-  layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
-  layer_defs.push({type:'pool', sx:3, stride:3});
+  layer_defs.push({type:'conv', sx:5, filters:32, stride:1, pad:1, activation:'relu'});
+  layer_defs.push({type:'pool', sx:2, stride:2});
   layer_defs.push({type:'softmax', num_classes:10});
   var layers = model.layers;
   net = new convnetjs.Net();
@@ -124,10 +124,10 @@ router.post('/training', function(req, res){
   // species a 2-layer neural network with one hidden layer of 20 neurons
   var layer_defs = [];
   layer_defs.push({type:'input', out_sx:24, out_sy:24, out_depth:1});
-  layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'});
+  layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:1, activation:'relu'});
   layer_defs.push({type:'pool', sx:2, stride:2});
-  layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
-  layer_defs.push({type:'pool', sx:3, stride:3});
+  layer_defs.push({type:'conv', sx:5, filters:32, stride:1, pad:1, activation:'relu'});
+  layer_defs.push({type:'pool', sx:2, stride:2});
   layer_defs.push({type:'softmax', num_classes:10});
 
   net = new convnetjs.Net();
@@ -146,14 +146,15 @@ router.post('/training', function(req, res){
   trainer.l2_decay= 0.001;
   trainer.batch_size = 20;
 
-  getPixels("./data/mnist_batch_0.png", function(err, data) {
+  getPixels("./data/new_big_5.png", function(err, data) {
     // load labels
-    var contents = fs.readFileSync("./data/mnist_labels.json");
+    var contents = fs.readFileSync("./data/big_column_flatten_labels.json");
     var labels = JSON.parse(contents);
     labels = labels['labels'];
 
-    var batch_size = 3000;
+    var batch_size = 181;
     var use_validation_data = false;
+    var train_acc = 0;
 
     // functions related to training
     var sample_training_instance = function() {
@@ -167,7 +168,13 @@ router.post('/training', function(req, res){
         var ix = ((W * n) + i) * 4;
         x.w[i] = img[ix]/255.0;
       }
-      x = convnetjs.augment(x, 24);
+
+      //var checkx = [];
+      //for(var i = 0;i<28;i++) {
+      //  checkx.push(x.w.slice(i*28,(i+1)*28));
+      //}
+
+      x = convnetjs.augment(x, 24, 1, 1);
 
       var isval = use_validation_data && n%10===0 ? true : false;
       return {x:x, label:labels[n], isval:isval};
@@ -196,14 +203,11 @@ router.post('/training', function(req, res){
 
       // keep track of stats such as the average training error and loss
       var yhat = net.getPrediction();
-      var train_acc = yhat === y ? 1.0 : 0.0;
-      //xLossWindow.add(lossx);
-      //wLossWindow.add(lossw);
-      //trainAccWindow.add(train_acc);
-      var output = {'lossx':lossx,'lossw':lossw,'train_acc':train_acc};
+      train_acc = train_acc + (yhat === y ? 1.0 : 0.0);
+      var output = {'lossx':lossx,'lossw':lossw,'train_acc':train_acc/max_iter};
       return output;
     };
-    var max_iter = 1000;
+    var max_iter = 10000;
     var output = [];
     for (var i = 0; i<max_iter; i++){
       output = load_and_step();
@@ -229,5 +233,22 @@ router.post('/training', function(req, res){
   // the class we trained the network with (zero)
 
 });
+
+//function internal_test(id){
+//  getPixels("./data/new_big_5.png", function(err, data) {
+//    // helpful utility for converting images into Vols is included
+//
+//    // TODO: preprocess the image to the target size
+//    var image = data.data;
+//    var x = new convnetjs.Vol(28,28,1,0.0);
+//    var W = 28*28;
+//    for(var i=0;i<W;i++) {
+//      var ix = i*4;
+//      x.w[i] = image[ix]/255.0;
+//    }
+//    x = convnetjs.augment(x, 24, 1, 1);
+//
+//    var output_probabilities_vol = net.forward(x);
+//};
 
 module.exports = router;

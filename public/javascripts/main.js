@@ -21,7 +21,7 @@ function train(){
 
 function test(){
     // specify image address
-    var address = 'https://raw.githubusercontent.com/DesignInformaticsLab/meterReader/master/data/numberInverse8.png';
+    var address = 'https://raw.githubusercontent.com/DesignInformaticsLab/meterReader/master/data/0.png';
 
     //var img = new Image();
     //img.src = address;
