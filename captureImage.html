@@ -1,0 +1,34 @@
+
+<!doctype html>
+<html>
+<head>
+	<title>Capture Image</title>
+	<meta charset='utf-8'>
+  <script src="https://code.jquery.com/jquery-3.1.1.js"   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+	<script src="public/javascripts/captureImage.js"></script>
+	<link rel="stylesheet" href="public/stylesheets/style.css"/>
+</head>
+<body>
+<div class="contentarea">
+	<p>
+		Capture Image and store in local file system
+	</p>
+  <div class="camera">
+    <video id="video">Video stream not available.</video>
+    <button id="startbutton">Take photo</button>
+  </div>
+  <canvas id="canvas">
+  </canvas>
+  <div class="output">
+    <img id="photo" alt="The screen capture will appear in this box.">
+  </div>
+</div>
+
+
+<div id="download">
+    <a id="downloadButton" class="button" href="#" download="image.jpg">Download image</a>
+</div>
+
+
+</body>
+</html>

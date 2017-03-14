@@ -1,6 +1,9 @@
 /**
  * Created by p2admin on 2/18/2017.
  */
+
+
+
 function train(){
     $.post('/checkModel',{}, function(data){
         if(data!=null && data.length>0){
