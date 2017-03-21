@@ -1,0 +1,20 @@
+doctype html
+html
+   head
+      title Capture Image
+      meta(charset='utf-8')
+      script(src='https://code.jquery.com/jquery-3.1.1.js', integrity='sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=', crossorigin='anonymous')
+      script(src='/javascripts/captureImage.js')
+      link(rel='stylesheet', href='/stylesheets/style.css')
+   body
+      .contentarea
+         p
+            | Capture Image and store in local file system
+         .camera
+            video#video Video stream not available.
+            button#startbutton Take photo
+         canvas#canvas
+         .output
+            img#photo(alt='The screen capture will appear in this box.')
+      #download
+         a#downloadButton.button(href='#', download='image.jpg') Download image

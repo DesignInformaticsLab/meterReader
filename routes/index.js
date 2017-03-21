@@ -16,6 +16,11 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Meter Reader' });
 });
 
+///* Test camera. */
+//router.get('/camera', function(req, res, next) {
+//  res.render('camera');
+//});
+
 // classification
 router.post('/read', function(req, res){
   var contents = fs.readFileSync("./data/model.json");
@@ -44,17 +49,17 @@ router.post('/read', function(req, res){
   net.layers[9].biases = layers[9].biases;
   net.layers[9].filters = layers[9].filters;
 
-  var address = req.body['image'];
+  var image = req.body['image'];
   x = new convnetjs.Vol(28,28,1,0.0);
-  x1 = new convnetjs.Vol(28,28,1,0.0);
+  //x1 = new convnetjs.Vol(28,28,1,0.0);
   //var address = "./data/new_big_simple.png";
 
   // note: getpixels reads row by row, not column by column!
-  getPixels(address, function(err, data) {
+  //getPixels(address, function(err, data) {
     // helpful utility for converting images into Vols is included
 
     // TODO: preprocess the image to the target size
-    var image = data.data;
+    //var image = data.data;
 
     var W = 28*28;
     for(var i=0;i<W;i++) {
@@ -65,28 +70,29 @@ router.post('/read', function(req, res){
 
     var output_probabilities_vol = net.forward(x);
 
-    getPixels("./data/new_big_5_row.png", function(err, data) {
-      // helpful utility for converting images into Vols is included
-
-      // TODO: preprocess the image to the target size
-      var image = data.data;
-
-      var W = 28*28;
-      //for(var i=0;i<W;i++) {
-      //  var ix = i*4;
-      //  x.w[i] = image[ix]/255.0;
-      //}
-      for(var i=0;i<W;i++) {
-        var ix = ((W * 17) + i) * 4;
-        x1.w[i] = image[ix]/255.0;
-      }
-      x1 = convnetjs.augment(x1, 28, 1, 1);
-
-      var output_probabilities_vol1 = net.forward(x1);
-      res.send( output_probabilities_vol);
-    });
-  });
-
+    //getPixels("./data/new_big_5_row.png", function(err, data) {
+    //  // helpful utility for converting images into Vols is included
+    //
+    //  // TODO: preprocess the image to the target size
+    //  var image = data.data;
+    //
+    //  var W = 28*28;
+    //  //for(var i=0;i<W;i++) {
+    //  //  var ix = i*4;
+    //  //  x.w[i] = image[ix]/255.0;
+    //  //}
+    //  for(var i=0;i<W;i++) {
+    //    var ix = ((W * 17) + i) * 4;
+    //    x1.w[i] = image[ix]/255.0;
+    //  }
+    //  x1 = convnetjs.augment(x1, 28, 1, 1);
+    //
+    //  var output_probabilities_vol1 = net.forward(x1);
+    //  res.send( output_probabilities_vol);
+    //});
+  //});
+  var output_probabilities_vol = net.forward(x1);
+  res.send( output_probabilities_vol);
 
   //pg.connect(connection, function(err, client, done) {
   //  client.query('SELECT model FROM readmeter_model_table LIMIT 1', function(err, result) {
