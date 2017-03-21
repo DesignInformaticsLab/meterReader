@@ -154,10 +154,9 @@ function takepicture() {
 
 // read and send digits
 var img_address = "https://upload.wikimedia.org/wikipedia/en/8/82/Water_meter_register.jpg";
-
+var digit = Array(6);
 function read_img(img_address){
     Jimp.read(img_address).then(function (lenna) {
-        var digit = Array(6);
         for (var iter=0;iter<1;iter++){
             var small_image = Array.from(lenna.quality(60)                 // set JPEG quality
                 .greyscale()                 // set greyscale

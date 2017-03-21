@@ -91,7 +91,7 @@ router.post('/read', function(req, res){
     //  res.send( output_probabilities_vol);
     //});
   //});
-  var output_probabilities_vol = net.forward(x1);
+  //var output_probabilities_vol = net.forward(x1);
   res.send( output_probabilities_vol);
 
   //pg.connect(connection, function(err, client, done) {
