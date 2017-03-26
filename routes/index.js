@@ -16,10 +16,10 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Meter Reader' });
 });
 
-///* Test camera. */
-//router.get('/camera', function(req, res, next) {
-//  res.render('camera');
-//});
+/* meter reader for MAE540 project */
+router.get('/meterReader', function(req, res, next) {
+  res.render('meterReader');
+});
 
 // classification
 router.post('/read', function(req, res){
@@ -92,7 +92,7 @@ router.post('/read', function(req, res){
     //});
   //});
   //var output_probabilities_vol = net.forward(x1);
-  res.send( output_probabilities_vol);
+  res.send( {'prob':output_probabilities_vol, 'id':req.body['id']} );
 
   //pg.connect(connection, function(err, client, done) {
   //  client.query('SELECT model FROM readmeter_model_table LIMIT 1', function(err, result) {

@@ -1,4 +1,7 @@
 /**
+ * Created by p2admin on 3/23/2017.
+ */
+/**
  * Created by p2admin on 2/18/2017.
  */
 
@@ -164,10 +167,9 @@ function read_img(img_address){
                 .crop( 70+iter*50, 120, 60, 60 )
                 .resize( 28, 28).bitmap.data);
 
-            $.post('/read',{'image':small_image, 'id':iter}, function(data){
+            $.post('/read',{'image':small_image}, function(data){
                 if(data!=null){
-                    var id = data.id;
-                    var pred = data.prob;
+                    var pred = data;
                     //console.log(pred);
                     var max = 0;
                     var id = -1;
@@ -177,7 +179,7 @@ function read_img(img_address){
                         if (max==v) {id = i;}
                     }
                     console.log(pred);
-                    digit[id] = id;
+                    digit[iter] = id;
                 }
             });
         }
