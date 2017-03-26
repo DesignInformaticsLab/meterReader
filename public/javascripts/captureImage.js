@@ -17,6 +17,13 @@
     video = document.getElementById('video');
     canvas = document.getElementById('canvas');
     photo = document.getElementById('photo');
+
+
+    navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+        .then(stream => video.srcObject = stream).catch(e => log(e.name + ": "+ e.message));
+
+    var log = msg => div.innerHTML += msg + "<br>";
+
     startbutton = document.getElementById('startbutton');
 
 

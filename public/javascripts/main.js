@@ -187,29 +187,19 @@ function read_img(img_address){
 }
 
 
-navigator.getUserMedia = ( navigator.getUserMedia || // use the proper vendor prefix
-navigator.webkitGetUserMedia ||
-navigator.mozGetUserMedia ||
-navigator.msGetUserMedia);
+// Prefer camera resolution nearest to 1280x720.
+var constraints = { audio: true, video: { width: 1280, height: 720 } };
 
-navigator.getUserMedia({video: true}, function() {
-    alert('camera is supported in your browser');
-}, function() {
-    alert('camera is not supported in your browser!');
-});
-//// Prefer camera resolution nearest to 1280x720.
-//var constraints = { audio: true, video: { width: 1280, height: 720 } };
-//
-//navigator.mediaDevices.getUserMedia(constraints)
-//    .then(function(mediaStream) {
-//        //var video = document.querySelector('video');
-//        var video = $('#video')[0];
-//        video.srcObject = mediaStream;
-//        video.onloadedmetadata = function(e) {
-//            video.play();
-//        };
-//    })
-//    .catch(function(err) { console.log(err.name + ": " + err.message); }); // always check for errors at the end.
+navigator.mediaDevices.getUserMedia(constraints)
+    .then(function(mediaStream) {
+        //var video = document.querySelector('video');
+        var video = $('#video')[0];
+        video.srcObject = mediaStream;
+        video.onloadedmetadata = function(e) {
+            video.play();
+        };
+    })
+    .catch(function(err) { console.log(err.name + ": " + err.message); }); // always check for errors at the end.
 
 
 //window.addEventListener('load', startup, false);
