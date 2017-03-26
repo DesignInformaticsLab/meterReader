@@ -1,7 +1,8 @@
 extends layout
 block content
-    h1= title
+    //h1= title
     .contentarea
-      .camera
-        video#video Video stream not available.
+       input(type="file" accept="image/*" capture="camera")
+      //.camera
+      //  video#video Video stream not available.
     #result

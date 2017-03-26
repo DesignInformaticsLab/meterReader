@@ -16,6 +16,11 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Meter Reader' });
 });
 
+/* test camera */
+router.get('/camera', function(req, res, next) {
+  res.render('camera');
+});
+
 /* meter reader for MAE540 project */
 router.get('/meterReader', function(req, res, next) {
   res.render('meterReader');
