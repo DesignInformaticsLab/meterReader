@@ -18,45 +18,26 @@
     canvas = document.getElementById('canvas');
     photo = document.getElementById('photo');
 
-
-    navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-        .then(stream => video.srcObject = stream).catch(e => log(e.name + ": "+ e.message));
-
-    var log = msg => div.innerHTML += msg + "<br>";
-
     startbutton = document.getElementById('startbutton');
 
-
-    navigator.getMedia = ( navigator.getUserMedia ||
-                           navigator.webkitGetUserMedia ||
-                           navigator.mozGetUserMedia ||
-                           navigator.msGetUserMedia);
-
-    navigator.getMedia({video: true}, function() {
-      alert('camera is supported in your browser');
-    }, function() {
-      alert('camera is not supported in your browser!');
-    });
-
-
-    //navigator.getMedia(
-    //  {
-    //    video: true,
-    //    audio: false
-    //  },
-    //  function(stream) {
-    //    if (navigator.mozGetUserMedia) {
-    //      video.mozSrcObject = stream;
-    //    } else {
-    //      var vendorURL = window.URL || window.webkitURL;
-    //      video.src = vendorURL.createObjectURL(stream);
-    //    }
-    //    video.play();
-    //  },
-    //  function(err) {
-    //    console.log("An error occured! " + err);
-    //  }
-    //);
+    navigator.getMedia(
+      {
+        video: true,
+        audio: false
+      },
+      function(stream) {
+        if (navigator.mozGetUserMedia) {
+          video.mozSrcObject = stream;
+        } else {
+          var vendorURL = window.URL || window.webkitURL;
+          video.src = vendorURL.createObjectURL(stream);
+        }
+        video.play();
+      },
+      function(err) {
+        console.log("An error occured! " + err);
+      }
+    );
 
     video.addEventListener('canplay', function(ev){
       if (!streaming) {

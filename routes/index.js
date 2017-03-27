@@ -28,18 +28,17 @@ router.get('/meterReader', function(req, res, next) {
 
 // classification
 router.post('/read', function(req, res){
-  var contents = fs.readFileSync("./data/model.json");
+  var contents = fs.readFileSync("./data/model_MNIST.json");
   var model = JSON.parse(contents);
 
   //var id = req.body['image'];
 
   var layer_defs = [];
   layer_defs.push({type:'input', out_sx:28, out_sy:28, out_depth:1});
-  layer_defs.push({type:'conv', sx:3, filters:8, stride:1, pad:1, activation:'relu'});
+  layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'});
   layer_defs.push({type:'pool', sx:2, stride:2});
-  layer_defs.push({type:'conv', sx:4, filters:16, stride:1, pad:1, activation:'relu'});
-  layer_defs.push({type:'pool', sx:2, stride:2});
-  layer_defs.push({type:'conv', sx:3, filters:16, stride:1, pad:1, activation:'relu'});
+  layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
+  layer_defs.push({type:'pool', sx:3, stride:3});
   layer_defs.push({type:'softmax', num_classes:10});
   var layers = model.layers;
   net = new convnetjs.Net();
@@ -51,8 +50,8 @@ router.post('/read', function(req, res){
   net.layers[4].filters = layers[4].filters;
   net.layers[7].biases = layers[7].biases;
   net.layers[7].filters = layers[7].filters;
-  net.layers[9].biases = layers[9].biases;
-  net.layers[9].filters = layers[9].filters;
+  //net.layers[9].biases = layers[9].biases;
+  //net.layers[9].filters = layers[9].filters;
 
   var image = req.body['image'];
   x = new convnetjs.Vol(28,28,1,0.0);
