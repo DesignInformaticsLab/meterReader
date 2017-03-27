@@ -4,7 +4,8 @@
 
 $(document).ready(function() {
     // Prefer camera resolution nearest to 1280x720.
-    var constraints = {audio: true, video: {width: 1280, height: 720}};
+    var constraints = {audio: false,
+        video: true};
     var video = $("#video")[0];
     var canvas = document.getElementById('canvas');
     var startbutton = document.getElementById('startbutton');
@@ -124,7 +125,7 @@ $(document).ready(function() {
                             }
                             console.log(pred);
                             digit[iter] = id;
-                            $( "#result" ).append( "<p>The digit is "+ id + "</p>" );
+                            $( "#result" ).html( "<a>"+ id + "</a>" );
                         }
                     });
                 }
