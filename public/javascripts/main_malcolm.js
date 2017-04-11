@@ -71,7 +71,7 @@ $(document).ready(function() {
         //TODO: preprocess image
 
         // send data to predict
-        $.post('/read',{'image':address}, function(data){
+        $.post('/read_malcolm',{'image':address}, function(data){
             if(data!=null){
                 var pred = data;
                 //console.log(pred);
