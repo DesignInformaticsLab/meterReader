@@ -9,21 +9,22 @@ html
    body
       //h1= title
     //p Welcome to #{title}
-    //.contentarea
-    //    video(id="video" width="160" height="120" autoplay)
-    //    canvas(id="canvas")
-    //    #buttondiv
-    //        button#startbutton
-    //    #result
     .contentarea
-      p
-        | Capture Image and store in local file system
-      .camera
-        video#video Video stream not available.
-        button#startbutton Take photo
-      canvas#canvas
-      .output
-        img#photo(alt='The screen capture will appear in this box.')
-    #download
-      a#downloadButton.button(href='#', download='image.jpg') Download image
+        video(id="video" width="160" height="120" autoplay)
+        canvas(id="canvas")
+        #buttondiv
+            button#startbutton
+        #result
+        input(type="file" accept="image/*" capture="camera")
+    //.contentarea
+    //  p
+    //    | Capture Image and store in local file system
+    //  .camera
+    //    video#video Video stream not available.
+    //    button#startbutton Take photo
+    //  canvas#canvas
+    //  .output
+    //    img#photo(alt='The screen capture will appear in this box.')
+    //#download
+    //  a#downloadButton.button(href='#', download='image.jpg') Download image
     #result
