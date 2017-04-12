@@ -111,7 +111,7 @@ $(document).ready(function() {
                     var imgdata = new ImageData(imagarray, 28, 28);
                     context.putImageData(imgdata, 0, 0);
 
-                    $.post('/read_malcolm',{'image':Array.from(small_image), 'id':iter}, function(data){
+                    $.post('/read',{'image':Array.from(small_image), 'id':iter}, function(data){
                         if(data!=null){
                             var iter = data.id;
                             var pred = data.prob;
