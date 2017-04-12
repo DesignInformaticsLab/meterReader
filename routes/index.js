@@ -318,7 +318,7 @@ router.post('/read_malcolm', function(req, res){
   net = new convnetjs.Net();
   net.makeLayers(layer_defs);
 
-  net.layers=layers
+  net.layers=layers;
   //net.layers[0].biases = layers[0].biases;
   //net.layers[0].filters = layers[0].filters;
   //net.layers[1].biases = layers[1].biases;
