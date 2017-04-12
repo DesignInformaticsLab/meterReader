@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 
 /* GET home page. */
 router.get('/furi', function(req, res, next) {
-  res.render('frui', { title: 'FURI Symposium demo' });
+  res.render('furi', { title: 'FURI Symposium demo' });
 });
 
 

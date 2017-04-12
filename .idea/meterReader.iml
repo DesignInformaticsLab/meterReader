@@ -5,5 +5,17 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="meterReader node_modules" level="project" />
+    <orderEntry type="library" name="Dojo-1.8.3" level="application" />
+    <orderEntry type="library" name="node-jose-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="YUI-3.10.0" level="application" />
+    <orderEntry type="library" name="ExtJS GPL-4.2" level="application" />
+    <orderEntry type="library" name="jQuery-2.0.0" level="application" />
+    <orderEntry type="library" name="jQuery UI-1.10.2" level="application" />
+    <orderEntry type="library" name="Knockout-2.2.1" level="application" />
+    <orderEntry type="library" name="Modernizr-2.6.2" level="application" />
+    <orderEntry type="library" name="Prototype-1.7.1" level="application" />
+    <orderEntry type="library" name="script.aculo.us-1.9.0" level="application" />
+    <orderEntry type="library" name="MooTools-1.4.5" level="application" />
+    <orderEntry type="library" name="express" level="application" />
   </component>
 </module>
