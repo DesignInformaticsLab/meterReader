@@ -318,12 +318,25 @@ router.post('/read_malcolm', function(req, res){
   net = new convnetjs.Net();
   net.makeLayers(layer_defs);
 
-  net.layers[1].biases = layers[1].biases;
-  net.layers[1].filters = layers[1].filters;
-  net.layers[4].biases = layers[4].biases;
-  net.layers[4].filters = layers[4].filters;
-  net.layers[7].biases = layers[7].biases;
-  net.layers[7].filters = layers[7].filters;
+  net.layers=layers
+  //net.layers[0].biases = layers[0].biases;
+  //net.layers[0].filters = layers[0].filters;
+  //net.layers[1].biases = layers[1].biases;
+  //net.layers[1].filters = layers[1].filters;
+  //net.layers[2].biases = layers[2].biases;
+  //net.layers[2].filters = layers[2].filters;
+  //net.layers[3].biases = layers[3].biases;
+  //net.layers[3].filters = layers[3].filters;
+  //net.layers[4].biases = layers[4].biases;
+  //net.layers[4].filters = layers[4].filters;
+  //net.layers[5].biases = layers[5].biases;
+  //net.layers[5].filters = layers[5].filters;
+  //net.layers[6].biases = layers[6].biases;
+  //net.layers[6].filters = layers[6].filters;
+  //net.layers[7].biases = layers[7].biases;
+  //net.layers[7].filters = layers[7].filters;
+  //net.layers[8].biases = layers[8].biases;
+  //net.layers[8].filters = layers[8].filters;
   //net.layers[9].biases = layers[9].biases;
   //net.layers[9].filters = layers[9].filters;
 
