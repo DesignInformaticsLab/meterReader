@@ -21,8 +21,8 @@ app.use(logger('dev'));
 //app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.json({limit: '80mb'}));
-app.use(bodyParser.urlencoded({ extended: true, limit: '80mb', parameterLimit:5000000}));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb', parameterLimit:50000}));
 
 app.use('/', index);
 app.use('/users', users);
