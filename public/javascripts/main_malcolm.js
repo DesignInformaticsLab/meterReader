@@ -34,8 +34,7 @@ $(document).ready(function() {
         canvas.height = height;
         context.drawImage(video, 0, 0, width, height);
         var data = canvas.toDataURL('image/png');
-        read_img('https://raw.githubusercontent.com/DesignInformaticsLab/meterReader/master/data/2.png');
-        //read_img(data);
+        read_img(data);
     }, false);
 
     function train(){
