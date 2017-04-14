@@ -327,7 +327,7 @@ router.post('/read_malcolm', function(req, res){
   net.layers[9].biases = layers[9].biases;
   net.layers[9].filters = layers[9].filters;
 
-  var image = '/data/number.png'//req.body['image'];
+  var image = req.body['/data/number.png'];
   x = new convnetjs.Vol(28,28,1,0.0);
   //x1 = new convnetjs.Vol(28,28,1,0.0);
   //var address = "./data/new_big_simple.png";
