@@ -312,8 +312,8 @@ router.post('/read_malcolm', function(req, res){
   layer_defs.push({type:'conv', sx:5, filters:50, stride:1, pad:4, activation:'relu'});
   layer_defs.push({type:'pool', sx:2, stride:2});
   layer_defs.push({type:'fc', num_neurons:500, activation: 'relu'});
-  layer_defs.push({type:'fc', num_neurons:10, activation: 'relu'});
-  layer_defs.push({type:'softmax', num_classes:10});
+  layer_defs.push({type:'fc', num_neurons:11, activation: 'relu'});
+  layer_defs.push({type:'softmax', num_classes:11});
   var layers = model.layers;
   net = new convnetjs.Net();
   net.makeLayers(layer_defs);
