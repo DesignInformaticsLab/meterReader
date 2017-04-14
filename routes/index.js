@@ -311,8 +311,8 @@ router.post('/read_malcolm', function(req, res){
   layer_defs.push({type:'pool', sx:2, stride:2});
   layer_defs.push({type:'conv', sx:5, filters:50, stride:1, pad:4, activation:'relu'});
   layer_defs.push({type:'pool', sx:2, stride:2});
-  //layer_defs.push({type:'fc', num_neurons:500, activation: 'relu'});
-  //layer_defs.push({type:'fc', num_neurons:10, activation: 'relu'});
+  layer_defs.push({type:'fc', num_neurons:500, activation: 'relu'});
+  layer_defs.push({type:'fc', num_neurons:10, activation: 'relu'});
   layer_defs.push({type:'softmax', num_classes:10});
   var layers = model.layers;
   net = new convnetjs.Net();
@@ -324,10 +324,10 @@ router.post('/read_malcolm', function(req, res){
   net.layers[4].filters = layers[4].filters;
   net.layers[7].biases = layers[7].biases;
   net.layers[7].filters = layers[7].filters;
-  //net.layers[9].biases = layers[9].biases;
-  //net.layers[9].filters = layers[9].filters;
-  //net.layers[11].biases = layers[11].biases;
-  //net.layers[11].filters = layers[11].filters;
+  net.layers[8].biases = layers[8].biases;
+  net.layers[8].filters = layers[8].filters;
+  net.layers[9].biases = layers[9].biases;
+  net.layers[9].filters = layers[9].filters;
 
   var image = req.body['image'];
   x = new convnetjs.Vol(28,28,1,0.0);
