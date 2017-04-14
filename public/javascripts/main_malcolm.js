@@ -144,4 +144,4 @@ $(document).ready(function() {
 //    });
 //});
 
-test();
+test.call();
