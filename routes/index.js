@@ -332,7 +332,7 @@ router.post('/read_malcolm', function(req, res){
   var image = req.body['image'];
   x = new convnetjs.Vol(28,28,1,0.0);
   //x1 = new convnetjs.Vol(28,28,1,0.0);
-  //var address = "./data/new_big_simple.png";
+  //var address = "./data/number.png";
 
   // note: getpixels reads row by row, not column by column!
   //getPixels(address, function(err, data) {
@@ -357,7 +357,7 @@ router.post('/read_malcolm', function(req, res){
   //  var image = data.data;
   //
   //  var W = 28*28;
-  //  //for(var i=0;i<W;i++) {
+    //for(var i=0;i<W;i++) {
   //  //  var ix = i*4;
   //  //  x.w[i] = image[ix]/255.0;
   //  //}
