@@ -73,7 +73,7 @@ $(document).ready(function() {
         // send data to predict
         $.post('/read_malcolm',{'image':address}, function(data){
             if(data!=null){
-                var pred = data;
+                var pred = data.prob;
                 //console.log(pred);
                 var max = 0;
                 var id = -1;
@@ -88,6 +88,7 @@ $(document).ready(function() {
             }
         });
     }
+    test();
 
 // read and send digits
 //var img_address = "https://upload.wikimedia.org/wikipedia/en/8/82/Water_meter_register.jpg";
