@@ -133,6 +133,7 @@ $(document).ready(function() {
                 console.error(err);
             });
     }
+    test();
 });
 
 
@@ -144,4 +145,3 @@ $(document).ready(function() {
 //    });
 //});
 
-test.call();
