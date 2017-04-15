@@ -57,7 +57,7 @@ $(document).ready(function() {
 
     function test(){
         // specify image address
-        var address = 'https://raw.githubusercontent.com/DesignInformaticsLab/meterReader/master/data/2inverted.png';
+        var address = 'https://raw.githubusercontent.com/DesignInformaticsLab/meterReader/master/data/2.png';
         //var address = 82;
 
         //var img = new Image();
