@@ -88,7 +88,7 @@ $(document).ready(function() {
             }
         });
     }
-
+    test();
 // read and send digits
 //var img_address = "https://upload.wikimedia.org/wikipedia/en/8/82/Water_meter_register.jpg";
 
