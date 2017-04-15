@@ -77,9 +77,9 @@ $(document).ready(function() {
                 //console.log(pred);
                 var max = 0;
                 var id = -1;
-                for (var i=0;i<10;i++) {
+                for (var i=0;i<10;i++){
                     var v = pred.w[i];
-                    max = v > max ? v : max;
+                    max = v > max? v:max;
                     if (max == v) {
                         id = i;
                     }
