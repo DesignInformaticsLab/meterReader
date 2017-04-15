@@ -57,7 +57,7 @@ $(document).ready(function() {
 
     function test(){
         // specify image address
-        var address = 'https://raw.githubusercontent.com/DesignInformaticsLab/meterReader/master/data/digit.png';
+        var address = 'https://raw.githubusercontent.com/DesignInformaticsLab/meterReader/master/data/2.png';
         //var address = 82;
 
         //var img = new Image();
@@ -90,7 +90,7 @@ $(document).ready(function() {
             }
         });
     }
-    //test();
+    test();
 
 // read and send digits
 //var img_address = "https://upload.wikimedia.org/wikipedia/en/8/82/Water_meter_register.jpg";
