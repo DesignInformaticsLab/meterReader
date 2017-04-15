@@ -351,29 +351,29 @@ router.post('/read_malcolm', function(req, res){
 
   var output_probabilities_vol = net.forward(x);
 
-  getPixels("./data/new_big_5_row.png", function(err, data) {
+  //getPixels("./data/new_big_5_row.png", function(err, data) {
   //  // helpful utility for converting images into Vols is included
   //
   //  // TODO: preprocess the image to the target size
-    var image = data.data;
+  //  var image = data.data;
   //
-    var W = 28*28;
+  //  var W = 28*28;
     //for(var i=0;i<W;i++) {
   //  //  var ix = i*4;
   //  //  x.w[i] = image[ix]/255.0;
   //  //}
-    for(var i=0;i<W;i++) {
-      var ix = ((W * 17) + i) * 4;
-      x1.w[i] = image[ix]/255.0;
-    }
-    x1 = convnetjs.augment(x1, 28, 1, 1);
+  //  for(var i=0;i<W;i++) {
+  //    var ix = ((W * 17) + i) * 4;
+  //    x1.w[i] = image[ix]/255.0;
+  //  }
+  //  x1 = convnetjs.augment(x1, 28, 1, 1);
   //
-    var output_probabilities_vol1 = net.forward(x1);
-    res.send( output_probabilities_vol1);
-  });
+  //  var output_probabilities_vol1 = net.forward(x1);
+  //  res.send( output_probabilities_vol1);
+  //});
   //});
   //var output_probabilities_vol = net.forward(x1);
-  //res.send( {'prob':output_probabilities_vol1, 'id':req.body['id']} );//leave uncommented change back from vol1 to vol
+  res.send( {'prob':output_probabilities_vol, 'id':req.body['id']} );
 
   //pg.connect(connection, function(err, client, done) {
   //  client.query('SELECT model FROM readmeter_model_table LIMIT 1', function(err, result) {
