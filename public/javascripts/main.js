@@ -73,17 +73,19 @@ $(document).ready(function() {
         // send data to predict
         $.post('/read',{'image':address}, function(data){
             if(data!=null){
-                var pred = data;
+                var pred = data.prob;
                 //console.log(pred);
                 var max = 0;
                 var id = -1;
                 for (var i=0;i<10;i++){
                     var v = pred.w[i];
                     max = v > max? v:max;
-                    if (max==v) {id = i;}
+                    if (max == v) {
+                        id = i;
+                    }
                 }
                 console.log(pred);
-                $( "#result" ).append( "<p>Read from: "+ address + "</p>" );
+                //$( "#result" ).append( "<p>Read from: "+ address + "</p>" );
                 $( "#result" ).append( "<p>The digit is "+ id + "</p>" );
             }
         });
@@ -129,9 +131,9 @@ $(document).ready(function() {
                         }
                     });
                 }
-        }).catch(function (err) {
-            console.error(err);
-        });
+            }).catch(function (err) {
+                console.error(err);
+            });
     }
     //test();
 });
