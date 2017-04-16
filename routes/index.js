@@ -56,7 +56,7 @@ router.post('/read', function (req, res) {
     net.layers[7].filters = layers[7].filters;
 
     x = new convnetjs.Vol(28, 28, 1, 0.0);
-    var address = "./data/digit.png";
+    var address = "./data/2.png";
     // note: getpixels reads row by row, not column by column!
     getPixels(address, function (err, data) {
         var image = data.data;
@@ -314,7 +314,7 @@ router.post('/read_malcolm', function (req, res) {
 
     //var address = req.body['image'];
     x = new convnetjs.Vol(28, 28, 1, 0.0);
-    var address = "./data/digit.png";
+    var address = "./data/2.png";
     // note: getpixels reads row by row, not column by column!
     getPixels(address, function (err, data) {
         var image = data.data;
