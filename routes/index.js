@@ -311,7 +311,6 @@ router.post('/read_malcolm', function(req, res){
   layer_defs.push({type:'conv', sx:5, filters:50, stride:1, pad:4, activation:'relu'});
   layer_defs.push({type:'pool', sx:2, stride:2});
   layer_defs.push({type:'fc', num_neurons:500, activation: 'relu'});
-  layer_defs.push({type:'fc', num_neurons:10, activation: 'relu'});
   layer_defs.push({type:'softmax', num_classes:10});
   var layers = model.layers;
   net = new convnetjs.Net();
@@ -323,57 +322,58 @@ router.post('/read_malcolm', function(req, res){
   net.layers[4].filters = layers[4].filters;
   net.layers[7].biases = layers[7].biases;
   net.layers[7].filters = layers[7].filters;
-  net.layers[8].biases = layers[8].biases;
-  net.layers[8].filters = layers[8].filters;
   net.layers[9].biases = layers[9].biases;
   net.layers[9].filters = layers[9].filters;
 
-  var image = req.body['image'];
+  //var contents = fs.readFileSync("./data/model_MNIST.json");
+  //var model = JSON.parse(contents);
+  //
+  ////var id = req.body['image'];
+  //
+  //var layer_defs = [];
+  //layer_defs.push({type:'input', out_sx:28, out_sy:28, out_depth:1});
+  //layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'});
+  //layer_defs.push({type:'pool', sx:2, stride:2});
+  //layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
+  //layer_defs.push({type:'pool', sx:3, stride:3});
+  //layer_defs.push({type:'softmax', num_classes:10});
+  //var layers = model.layers;
+  //net = new convnetjs.Net();
+  //net.makeLayers(layer_defs);
+  //
+  //net.layers[1].biases = layers[1].biases;
+  //net.layers[1].filters = layers[1].filters;
+  //net.layers[4].biases = layers[4].biases;
+  //net.layers[4].filters = layers[4].filters;
+  //net.layers[7].biases = layers[7].biases;
+  //net.layers[7].filters = layers[7].filters;
+
+
+
+  //var address = req.body['image'];
   x = new convnetjs.Vol(28,28,1,0.0);
-  //x1 = new convnetjs.Vol(28,28,1,0.0);
-  //var address = "./data/digit.png";
+  var address = "./data/digit.png";
   // note: getpixels reads row by row, not column by column!
-  //getPixels(address, function(err, data) {
-  // helpful utility for converting images into Vols is included
+  getPixels(address, function(err, data) {
+    // helpful utility for converting images into Vols is included
 
-  //var x = convnetjs.img_to_vol(document.getElementById('some_image'))
-  //var output_probabilities_vol = net.forward(x)
+    //var x = convnetjs.img_to_vol(document.getElementById('some_image'))
+    //var output_probabilities_vol = net.forward(x)
 
-  // TODO: preprocess the image to the target size
-  //var image = data.data;
+    // TODO: preprocess the image to the target size
+    var image = data.data;
 
-  var W = 28*28;
-  for(var i=0;i<W;i++) {
-    var ix = i * 4;
-    x.w[i] = image[ix]/255.0;
-  }
-  x = convnetjs.augment(x, 28, 1, 1);
+    var W = 28 * 28;
+    for (var i = 0; i < W; i++) {
+      var ix = i * 4;
+      x.w[i] = image[ix] / 255.0;
+    }
+    //x = convnetjs.augment(x, 28, 1, 1);
 
-  var output_probabilities_vol = net.forward(x);
+    var output_probabilities_vol = net.forward(x);
 
-  //getPixels("./data/new_big_5_row.png", function(err, data) {
-  //  // helpful utility for converting images into Vols is included
-  //
-  //  // TODO: preprocess the image to the target size
-  //  var image = data.data;
-  //
-  //  var W = 28*28;
-    //for(var i=0;i<W;i++) {
-  //  //  var ix = i*4;
-  //  //  x.w[i] = image[ix]/255.0;
-  //  //}
-  //  for(var i=0;i<W;i++) {
-  //    var ix = ((W * 17) + i) * 4;
-  //    x1.w[i] = image[ix]/255.0;
-  //  }
-  //  x1 = convnetjs.augment(x1, 28, 1, 1);
-  //
-  //  var output_probabilities_vol1 = net.forward(x1);
-  //  res.send( output_probabilities_vol1);
-  //});
-  //});
-  //var output_probabilities_vol = net.forward(x1);
-  res.send( {'prob':output_probabilities_vol, 'id':req.body['id']} );
+    res.send({'prob': output_probabilities_vol, 'id': req.body['id']});
+  });
 
   //pg.connect(connection, function(err, client, done) {
   //  client.query('SELECT model FROM readmeter_model_table LIMIT 1', function(err, result) {
