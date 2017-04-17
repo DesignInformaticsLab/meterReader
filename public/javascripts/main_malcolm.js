@@ -95,46 +95,46 @@ $(document).ready(function() {
 //var img_address = "https://upload.wikimedia.org/wikipedia/en/8/82/Water_meter_register.jpg";
 
     function read_img(img_address){
-     //   Jimp.read(img_address).then(
-     //       function (lenna) {
-     //           for (var iter=0;iter<num_img;iter++){
-     //               var small_image = lenna.quality(100)                 // set JPEG quality
-     //                   .greyscale()                 // set greyscale
-     //                   .contrast(1)
-     //                   //.posterize(10)
-     //                   //.resize( 100, 100 )
-     //                   //.crop( 70, 120, 60, 60 )
-     //                   .resize( 28, 28).bitmap.data;
+        Jimp.read(img_address).then(
+            function (lenna) {
+                for (var iter=0;iter<num_img;iter++){
+                    var small_image = lenna.quality(100)                 // set JPEG quality
+                        .greyscale()                 // set greyscale
+                        .contrast(1)
+                        //.posterize(10)
+                        //.resize( 100, 100 )
+                        //.crop( 70, 120, 60, 60 )
+                        .resize( 28, 28).bitmap.data;
 
-     //               var context = canvas.getContext('2d');
-     //               canvas.width = 28;
-     //               canvas.height = 28;
-     //               var imagarray = new Uint8ClampedArray(small_image);
-     //               var imgdata = new ImageData(imagarray, 28, 28);
-     //               context.putImageData(imgdata, 0, 0);
+                    var context = canvas.getContext('2d');
+                    canvas.width = 28;
+                    canvas.height = 28;
+                    var imagarray = new Uint8ClampedArray(small_image);
+                    var imgdata = new ImageData(imagarray, 28, 28);
+                    context.putImageData(imgdata, 0, 0);
 
-     //               $.post('/read_malcolm',{'image':Array.from(small_image), 'id':iter}, function(data){
-     //                   if(data!=null){
-     //                       var iter = data.id;
-     //                       var pred = data.prob;
-     //                       //console.log(pred);
-     //                       var max = 0;
-     //                       var id = -1;
-     //                       for (var i=0;i<10;i++){
-     //                           var v = pred.w[i];
-     //                           max = v > max? v:max;
-     //                           if (max==v) {id = i;}
-     //                       }
-     //                       console.log(pred);
-     //                       digit[iter] = id;
-     //                       $( "#result" ).html( "<a>"+ id + "</a>" );
-     //                   }
-     //               });
-     //           }
-     //       }).catch(function (err) {
-     //           console.error(err);
-     //       });
-        test();
+                    $.post('/read_malcolm',{'image':Array.from(small_image), 'id':iter}, function(data){
+                        if(data!=null){
+                            var iter = data.id;
+                            var pred = data.prob;
+                            //console.log(pred);
+                            var max = 0;
+                            var id = -1;
+                            for (var i=0;i<10;i++){
+                                var v = pred.w[i];
+                                max = v > max? v:max;
+                                if (max==v) {id = i;}
+                            }
+                            console.log(pred);
+                            digit[iter] = id;
+                            $( "#result" ).html( "<a>"+ id + "</a>" );
+                        }
+                    });
+                }
+            }).catch(function (err) {
+                console.error(err);
+            });
+        //test();
     }
 });
 
