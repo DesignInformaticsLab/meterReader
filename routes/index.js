@@ -290,14 +290,10 @@ router.post('/read_malcolm', function (req, res) {
     net.layers[4].filters = layers[4].filters;
     net.layers[7].biases = layers[7].biases;   //fc
     net.layers[7].filters = layers[7].filters;
-    net.layers[6].biases = layers[6].biases;
-    net.layers[6].filters = layers[6].filters;
-    net.layers[8].biases = layers[8].biases;
-    net.layers[8].filters = layers[8].filters;
-    net.layers[9].biases = layers[9].biases;
+    net.layers[9].biases = layers[9].biases; //softmax/fc??
     net.layers[9].filters = layers[9].filters;
-    net.layers[10].biases = layers[10].biases;
-    net.layers[10].filters = layers[10].filters;
+    net.layers[10].biases = layers[11].biases; //softmax??
+    net.layers[10].filters = layers[11].filters;
 
     //x = new convnetjs.Vol(28, 28, 1, 0.0);
     //var address = "./data/2.png";
