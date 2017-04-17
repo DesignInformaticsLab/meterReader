@@ -271,27 +271,29 @@ router.post('/training', function (req, res) {
 router.post('/read_malcolm', function (req, res) {
     var contents = fs.readFileSync("./data/model_malcolm.json");
     var model = JSON.parse(contents);
+    var net = new convnetjs.Net(); // create an empty network
+    net.fromJSON(json);
 
-    var layer_defs = [];
-    layer_defs.push({type: 'input', out_sx: 28, out_sy: 28, out_depth: 1});
-    layer_defs.push({type: 'conv', sx: 5, filters: 20, stride: 1, pad: 4, activation: 'relu'});
-    layer_defs.push({type: 'pool', sx: 2, stride: 2});
-    layer_defs.push({type: 'conv', sx: 5, filters: 50, stride: 1, pad: 4, activation: 'relu'});
-    layer_defs.push({type: 'pool', sx: 2, stride: 2});
-    layer_defs.push({type: 'fc', num_neurons: 500, activation: 'relu'});
-    layer_defs.push({type: 'softmax', num_classes: 10});
-    var layers = model.layers;
-    net = new convnetjs.Net();
-    net.makeLayers(layer_defs);
+    //var layer_defs = [];
+    //layer_defs.push({type: 'input', out_sx: 28, out_sy: 28, out_depth: 1});
+    //layer_defs.push({type: 'conv', sx: 5, filters: 20, stride: 1, pad: 4, activation: 'relu'});
+    //layer_defs.push({type: 'pool', sx: 2, stride: 2});
+    //layer_defs.push({type: 'conv', sx: 5, filters: 50, stride: 1, pad: 4, activation: 'relu'});
+    //layer_defs.push({type: 'pool', sx: 2, stride: 2});
+    //layer_defs.push({type: 'fc', num_neurons: 500, activation: 'relu'});
+    //layer_defs.push({type: 'softmax', num_classes: 10});
+    //var layers = model.layers;
+    //net = new convnetjs.Net();
+    //net.makeLayers(layer_defs);
 
-    net.layers[1].biases = layers[1].biases;  //conv
-    net.layers[1].filters = layers[1].filters;
-    net.layers[4].biases = layers[4].biases;   //conv
-    net.layers[4].filters = layers[4].filters;
-    net.layers[7].biases = layers[7].biases;   //fc
-    net.layers[7].filters = layers[7].filters;
-    net.layers[9].biases = layers[9].biases; //softmax/fc??
-    net.layers[9].filters = layers[9].filters;
+    //net.layers[1].biases = layers[1].biases;  //conv
+    //net.layers[1].filters = layers[1].filters;
+    //net.layers[4].biases = layers[4].biases;   //conv
+    //net.layers[4].filters = layers[4].filters;
+    //net.layers[7].biases = layers[7].biases;   //fc
+    //net.layers[7].filters = layers[7].filters;
+    //net.layers[9].biases = layers[9].biases; //softmax/fc??
+    //net.layers[9].filters = layers[9].filters;
 
     //x = new convnetjs.Vol(28, 28, 1, 0.0);
     //var address = "./data/2.png";
