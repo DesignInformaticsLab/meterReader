@@ -290,36 +290,33 @@ router.post('/read_malcolm', function (req, res) {
     net.layers[4].filters = layers[4].filters;
     net.layers[7].biases = layers[7].biases;
     net.layers[7].filters = layers[7].filters;
-    net.layers[8].biases = layers[8].biases;
-    net.layers[8].filters = layers[8].filters;
+    net.layers[9].biases = layers[9].biases;
+    net.layers[9].filters = layers[9].filters;
 
-    x = new convnetjs.Vol(28, 28, 1, 0.0);
-    var address = "./data/numberInverse0.png";
-    // note: getpixels reads row by row, not column by column!
-    getPixels(address, function (err, data) {
-        var image = data.data;
-
-        var W = 28 * 28;
-        for (var i = 0; i < W; i++) {
-            var ix = i * 4;
-            x.w[i] = image[ix] / 255.0;
-        }
-
-        var output_probabilities_vol = net.forward(x);
-
-        res.send({'prob': output_probabilities_vol, 'id': req.body['id']});
-    });
-
-    //var image = req.body['image'];
     //x = new convnetjs.Vol(28, 28, 1, 0.0);
-    //var W = 28 * 28;
-    //for (var i = 0; i < W; i++) {
-    //    var ix = i * 4;
-    //    x.w[i] = image[ix] / 255.0;
-    //}
-    //x = convnetjs.augment(x, 28, 1, 1);
-    //var output_probabilities_vol = net.forward(x);
-    //res.send({'prob': output_probabilities_vol, 'id': req.body['id']});
+    //var address = "./data/numberInverse0.png";
+    //// note: getpixels reads row by row, not column by column!
+    //getPixels(address, function (err, data) {
+    //    var image = data.data;
+    //    var W = 28 * 28;
+    //   for (var i = 0; i < W; i++) {
+    //        var ix = i * 4;
+    //        x.w[i] = image[ix] / 255.0;
+    //    }
+    //    var output_probabilities_vol = net.forward(x);
+    //    res.send({'prob': output_probabilities_vol, 'id': req.body['id']});
+    //});
+
+    var image = req.body['image'];
+    x = new convnetjs.Vol(28, 28, 1, 0.0);
+    var W = 28 * 28;
+    for (var i = 0; i < W; i++) {
+        var ix = i * 4;
+        x.w[i] = image[ix] / 255.0;
+    }
+    x = convnetjs.augment(x, 28, 1, 1);
+    var output_probabilities_vol = net.forward(x);
+    res.send({'prob': output_probabilities_vol, 'id': req.body['id']});
 
 });
 
