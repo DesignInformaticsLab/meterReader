@@ -287,7 +287,7 @@ router.post('/read_malcolm', function (req, res) {
     net2.makeLayers(layer_defs);
     var json = net.toJSON();
     var str = JSON.stringify(json);
-    fs.writeFile('./data/check.json', json, 'utf8', callback);
+    fs.writeFile('./data/check.json', json, 'utf8');
 
     //net.layers[1].biases = layers[1].biases;  //conv
     //net.layers[1].filters = layers[1].filters;
