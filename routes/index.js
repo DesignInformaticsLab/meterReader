@@ -294,7 +294,7 @@ router.post('/read_malcolm', function (req, res) {
     net.layers[8].filters = layers[8].filters;
 
     x = new convnetjs.Vol(28, 28, 1, 0.0);
-    var address = "./data/numberInverse0.png";
+    var address = "./data/2.png";
     // note: getpixels reads row by row, not column by column!
     getPixels(address, function (err, data) {
         var image = data.data;
