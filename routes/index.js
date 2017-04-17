@@ -272,7 +272,7 @@ router.post('/read_malcolm', function (req, res) {
     var contents = fs.readFileSync("./data/model_malcolm.json");
     var model = JSON.parse(contents);
     var net = new convnetjs.Net(); // create an empty network
-    net.fromJSON(json);
+    net.fromJSON(model);
 
     //var layer_defs = [];
     //layer_defs.push({type: 'input', out_sx: 28, out_sy: 28, out_depth: 1});
