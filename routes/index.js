@@ -274,17 +274,20 @@ router.post('/read_malcolm', function (req, res) {
     var net = new convnetjs.Net(); // create an empty network
     net.fromJSON(model);
 
-    //var layer_defs = [];
-    //layer_defs.push({type: 'input', out_sx: 28, out_sy: 28, out_depth: 1});
-    //layer_defs.push({type: 'conv', sx: 5, filters: 20, stride: 1, pad: 4, activation: 'relu'});
-    //layer_defs.push({type: 'pool', sx: 2, stride: 2});
-    //layer_defs.push({type: 'conv', sx: 5, filters: 50, stride: 1, pad: 4, activation: 'relu'});
-    //layer_defs.push({type: 'pool', sx: 2, stride: 2});
-    //layer_defs.push({type: 'fc', num_neurons: 500, activation: 'relu'});
-    //layer_defs.push({type: 'softmax', num_classes: 10});
+    var layer_defs = [];
+    layer_defs.push({type: 'input', out_sx: 28, out_sy: 28, out_depth: 1});
+    layer_defs.push({type: 'conv', sx: 5, filters: 20, stride: 1, pad: 4, activation: 'relu'});
+    layer_defs.push({type: 'pool', sx: 2, stride: 2});
+    layer_defs.push({type: 'conv', sx: 5, filters: 50, stride: 1, pad: 4, activation: 'relu'});
+    layer_defs.push({type: 'pool', sx: 2, stride: 2});
+    layer_defs.push({type: 'fc', num_neurons: 500, activation: 'relu'});
+    layer_defs.push({type: 'softmax', num_classes: 10});
     //var layers = model.layers;
-    //net = new convnetjs.Net();
-    //net.makeLayers(layer_defs);
+    net2 = new convnetjs.Net();
+    net2.makeLayers(layer_defs);
+    var json = net.toJSON();
+    var str = JSON.stringify(json);
+    fs.writeFile('./data/check.json', json, 'utf8', callback);
 
     //net.layers[1].biases = layers[1].biases;  //conv
     //net.layers[1].filters = layers[1].filters;
