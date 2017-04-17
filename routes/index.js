@@ -296,7 +296,7 @@ router.post('/read_malcolm', function (req, res) {
     net.layers[9].filters = layers[9].filters;
     net.layers[10].biases = layers[10].biases;
     net.layers[10].filters = layers[10].filters;
-    
+    document.write(net.layers[0])
     //x = new convnetjs.Vol(28, 28, 1, 0.0);
     //var address = "./data/2.png";
     // note: getpixels reads row by row, not column by column!
