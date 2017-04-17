@@ -284,20 +284,20 @@ router.post('/read_malcolm', function (req, res) {
     net = new convnetjs.Net();
     net.makeLayers(layer_defs);
 
-    net.layers[1].biases = layers[1].biases;
+    net.layers[1].biases = layers[1].biases;  //conv
     net.layers[1].filters = layers[1].filters;
-    net.layers[4].biases = layers[4].biases;
+    net.layers[4].biases = layers[4].biases;   //conv
     net.layers[4].filters = layers[4].filters;
-    net.layers[7].biases = layers[7].biases;
+    net.layers[7].biases = layers[7].biases;   //fc
     net.layers[7].filters = layers[7].filters;
+    net.layers[6].biases = layers[6].biases;
+    net.layers[6].filters = layers[6].filters;
     net.layers[8].biases = layers[8].biases;
     net.layers[8].filters = layers[8].filters;
     net.layers[9].biases = layers[9].biases;
     net.layers[9].filters = layers[9].filters;
     net.layers[10].biases = layers[10].biases;
     net.layers[10].filters = layers[10].filters;
-
-    res.write(net.layers[0])
 
     //x = new convnetjs.Vol(28, 28, 1, 0.0);
     //var address = "./data/2.png";
