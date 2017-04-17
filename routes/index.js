@@ -292,8 +292,6 @@ router.post('/read_malcolm', function (req, res) {
     net.layers[7].filters = layers[7].filters;
     net.layers[9].biases = layers[9].biases; //softmax/fc??
     net.layers[9].filters = layers[9].filters;
-    net.layers[10].biases = layers[11].biases; //softmax??
-    net.layers[10].filters = layers[11].filters;
 
     //x = new convnetjs.Vol(28, 28, 1, 0.0);
     //var address = "./data/2.png";
