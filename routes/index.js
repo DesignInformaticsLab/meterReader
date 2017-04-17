@@ -288,10 +288,10 @@ router.post('/read_malcolm', function (req, res) {
     net.layers[1].filters = layers[1].filters;
     net.layers[4].biases = layers[4].biases;
     net.layers[4].filters = layers[4].filters;
-    net.layers[7].biases = layers[7].biases;
-    net.layers[7].filters = layers[7].filters;
-    net.layers[10].biases = layers[10].biases;
-    net.layers[10].filters = layers[10].filters;
+    net.layers[7].biases = layers[8].biases;
+    net.layers[7].filters = layers[8].filters;
+    net.layers[10].biases = layers[9].biases;
+    net.layers[10].filters = layers[9].filters;
 
     //x = new convnetjs.Vol(28, 28, 1, 0.0);
     //var address = "./data/2.png";
