@@ -67,7 +67,7 @@ router.post('/read', function (req, res) {
     //res.send({'prob': output_probabilities_vol, 'id': req.body['id']});
 
     x = new convnetjs.Vol(28, 28, 1, 0.0);
-    var address = "./data/CPPN6black.png";
+    var address = "./data/CPPN6.png";
     getPixels(address, function (err, data) {
         var image = data.data;
         var W = 28 * 28;
