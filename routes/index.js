@@ -279,7 +279,7 @@ router.post('/training', function (req, res) {
 
 // classification
 router.post('/read_malcolm', function (req, res) {
-    var contents = fs.readFileSync("./data/model_MNIST.json");
+    var contents = fs.readFileSync("./data/model_malcolm.json");
     var model = JSON.parse(contents);
     var net = new convnetjs.Net(); // create an empty network
     net.fromJSON(model);
