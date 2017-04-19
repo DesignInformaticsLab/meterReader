@@ -317,6 +317,7 @@ router.post('/read_malcolm', function (req, res) {
             var ix = i * 4;
             x.w[i] = image[ix] / 255.0;
         }
+        
         var output_probabilities_vol = net.forward(x);
         res.send({'prob': output_probabilities_vol, 'id': req.body['id']});
     });
