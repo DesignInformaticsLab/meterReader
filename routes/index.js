@@ -309,7 +309,7 @@ router.post('/read_malcolm', function (req, res) {
     //net.layers[9].filters = layers[9].filters;
 
     x = new convnetjs.Vol(28, 28, 1, 0.0);
-    var address = "./data/0.png";
+    var address = "./data/2.png";
     getPixels(address, function (err, data) {
         var image = data.data;
         var W = 28 * 28;
