@@ -34,26 +34,10 @@ router.get('/meterReader', function (req, res, next) {
 
 // classification
 router.post('/read', function (req, res) {
-    var contents = fs.readFileSync("./data/model_MNIST.json");
+    var contents = fs.readFileSync("./data/model_meterreader.json");
     var model = JSON.parse(contents);
-
-    var layer_defs = [];
-    layer_defs.push({type: 'input', out_sx: 28, out_sy: 28, out_depth: 1});
-    layer_defs.push({type: 'conv', sx: 5, filters: 8, stride: 1, pad: 2, activation: 'relu'});
-    layer_defs.push({type: 'pool', sx: 2, stride: 2});
-    layer_defs.push({type: 'conv', sx: 5, filters: 16, stride: 1, pad: 2, activation: 'relu'});
-    layer_defs.push({type: 'pool', sx: 3, stride: 3});
-    layer_defs.push({type: 'softmax', num_classes: 10});
-    var layers = model.layers;
-    net = new convnetjs.Net();
-    net.makeLayers(layer_defs);
-
-    net.layers[1].biases = layers[1].biases;
-    net.layers[1].filters = layers[1].filters;
-    net.layers[4].biases = layers[4].biases;
-    net.layers[4].filters = layers[4].filters;
-    net.layers[7].biases = layers[7].biases;
-    net.layers[7].filters = layers[7].filters;
+    var net = new convnetjs.Net(); // create an empty network
+    net.fromJSON(model);
 
     var image = req.body['image'];
     x = new convnetjs.Vol(28, 28, 1, 0.0);
@@ -149,11 +133,10 @@ router.post('/training', function (req, res) {
     // species a 2-layer neural network with one hidden layer of 20 neurons
     var layer_defs = [];
     layer_defs.push({type: 'input', out_sx: 28, out_sy: 28, out_depth: 1});
-    layer_defs.push({type: 'conv', sx: 3, filters: 8, stride: 1, pad: 1, activation: 'relu'});
+    layer_defs.push({type: 'conv', sx: 5, filters: 8, stride: 1, pad: 2, activation: 'relu'});
     layer_defs.push({type: 'pool', sx: 2, stride: 2});
-    layer_defs.push({type: 'conv', sx: 4, filters: 16, stride: 1, pad: 1, activation: 'relu'});
-    layer_defs.push({type: 'pool', sx: 2, stride: 2});
-    layer_defs.push({type: 'conv', sx: 3, filters: 16, stride: 1, pad: 1, activation: 'relu'});
+    layer_defs.push({type: 'conv', sx: 5, filters: 16, stride: 1, pad: 2, activation: 'relu'});
+    layer_defs.push({type: 'pool', sx: 3, stride: 3});
     layer_defs.push({type: 'softmax', num_classes: 10});
 
     net = new convnetjs.Net();
@@ -172,13 +155,13 @@ router.post('/training', function (req, res) {
     trainer.l2_decay = 0.001;
     trainer.batch_size = 20;
 
-    getPixels("./data/new_big_5_row.png", function (err, data) {
+    getPixels("./data/new_big_row_4.png", function (err, data) {
         // load labels
         var contents = fs.readFileSync("./data/big_column_flatten_labels.json");
         var labels = JSON.parse(contents);
         labels = labels['labels'];
 
-        var batch_size = 181;
+        var batch_size = 201;
         var use_validation_data = false;
         var train_acc = 0;
 
@@ -251,7 +234,7 @@ router.post('/training', function (req, res) {
         }
 
         var predict = [];
-        for (var i = 0; i < 181; i++) {
+        for (var i = 0; i < 201; i++) {
             predict.push(internal_test(i, img, net));
         }
 
@@ -279,7 +262,7 @@ router.post('/training', function (req, res) {
 
 // classification
 router.post('/read_malcolm', function (req, res) {
-    var contents = fs.readFileSync("./data/model_malcolm.json");
+    var contents = fs.readFileSync("./data/model_MNIST.json");
     var model = JSON.parse(contents);
     var net = new convnetjs.Net(); // create an empty network
     net.fromJSON(model);
@@ -309,7 +292,7 @@ router.post('/read_malcolm', function (req, res) {
     //net.layers[9].filters = layers[9].filters;
 
     x = new convnetjs.Vol(28, 28, 1, 0.0);
-    var address = "./data/0.png";
+    var address = "./data/2inverted.png";
     getPixels(address, function (err, data) {
         var image = data.data;
         var W = 28 * 28;

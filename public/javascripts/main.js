@@ -137,6 +137,7 @@ $(document).ready(function() {
             });
 
     }
+    //train();
 });
 
 
