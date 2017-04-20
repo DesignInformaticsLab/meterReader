@@ -308,30 +308,30 @@ router.post('/read_malcolm', function (req, res) {
     //net.layers[9].biases = layers[9].biases; //softmax/fc??
     //net.layers[9].filters = layers[9].filters;
 
-    //x = new convnetjs.Vol(28, 28, 1, 0.0);
-    //var address = "./data/1.png";
-    //getPixels(address, function (err, data) {
-    //    var image = data.data;
-    //    var W = 28 * 28;
-    //    for (var i = 0; i < W; i++) {
-    //        var ix = i * 4;
-    //        x.w[i] = image[ix] / 255.0;
-    //    }
-        
-    //    var output_probabilities_vol = net.forward(x);
-    //    res.send({'prob': output_probabilities_vol, 'id': req.body['id']});
-    //});
-
-    var image = req.body['image'];
     x = new convnetjs.Vol(28, 28, 1, 0.0);
-    var W = 28 * 28;
-    for (var i = 0; i < W; i++) {
-        var ix = i * 4;
-        x.w[i] = image[ix] / 255.0;
-    }
-    x = convnetjs.augment(x, 28, 1, 1);
-    var output_probabilities_vol = net.forward(x);
-    res.send({'prob': output_probabilities_vol, 'id': req.body['id']});
+    var address = "./data/1.png";
+    getPixels(address, function (err, data) {
+        var image = data.data;
+        var W = 28 * 28;
+        for (var i = 0; i < W; i++) {
+            var ix = i * 4;
+            x.w[i] = image[ix] / 255.0;
+        }
+        
+        var output_probabilities_vol = net.forward(x);
+        res.send({'prob': output_probabilities_vol, 'id': req.body['id']});
+    });
+
+    //var image = req.body['image'];
+    //x = new convnetjs.Vol(28, 28, 1, 0.0);
+    //var W = 28 * 28;
+    //for (var i = 0; i < W; i++) {
+    //    var ix = i * 4;
+    //    x.w[i] = image[ix] / 255.0;
+    //}
+    //x = convnetjs.augment(x, 28, 1, 1);
+    //var output_probabilities_vol = net.forward(x);
+    //res.send({'prob': output_probabilities_vol, 'id': req.body['id']});
 
 });
 
