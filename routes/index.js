@@ -155,102 +155,112 @@ router.post('/training', function (req, res) {
     trainer.l2_decay = 0.001;
     trainer.batch_size = 20;
 
-    getPixels("./data/new_big_row_4.png", function (err, data) {
-        // load labels
-        var contents = fs.readFileSync("./data/big_column_flatten_labels.json");
-        var labels = JSON.parse(contents);
-        labels = labels['labels'];
+    getPixels("./data/new_big_row_4.png", function (err, data1) {
+        var image_set1_temp = data1.data;
+        var image_set1 = Array.from(image_set1_temp);
+        getPixels("./data/mnist_batch_0.png", function (err, data2) {
+            var image_set2_temp = data2.data;
+            var image_set2 = Array.from(image_set2_temp)
+            var img = image_set1.concat(image_set2);
+            // load labels
+            var contents1 = fs.readFileSync("./data/big_column_flatten_labels.json");
+            var labels1 = JSON.parse(contents1);
+            var labels_set1 = labels1['labels'];
+            var contents2 = fs.readFileSync("./data/mnist_labels.json");
+            var labels2 = JSON.parse(contents2);
+            var labels_set2 = labels2['labels'];
+            var labels = labels_set1.concat(labels_set2);
 
-        var batch_size = 201;
-        var use_validation_data = false;
-        var train_acc = 0;
+            var batch_size = labels.length;
+            var use_validation_data = false;
+            var train_acc = 0;
 
-        var img = data.data;
+            var internal_test = function (id, image, net) {
+                var x = new convnetjs.Vol(28, 28, 1, 0.0);
+                var W = 28 * 28;
+                for (var i = 0; i < W; i++) {
+                    var ix = ((W * id) + i) * 4;
+                    x.w[i] = image[ix] / 255.0;
+                }
+                x = convnetjs.augment(x, 28, 1, 1);
 
-        var internal_test = function (id, image, net) {
-            var x = new convnetjs.Vol(28, 28, 1, 0.0);
-            var W = 28 * 28;
-            for (var i = 0; i < W; i++) {
-                var ix = ((W * id) + i) * 4;
-                x.w[i] = image[ix] / 255.0;
-            }
-            x = convnetjs.augment(x, 28, 1, 1);
-
-            net.forward(x);
-            var yhat = net.getPrediction();
-            return yhat;
-        };
-
-        // functions related to training
-        var sample_training_instance = function () {
-            // find an unloaded batch
-            var n = Math.floor(Math.random() * batch_size); // sample within the batch
-            // fetch the appropriate row of the training image and reshape into a Vol
-
-            var x = new convnetjs.Vol(28, 28, 1, 0.0);
-            var W = 28 * 28;
-            for (var i = 0; i < W; i++) {
-                var ix = ((W * n) + i) * 4;
-                x.w[i] = img[ix] / 255.0;
-            }
-
-            x = convnetjs.augment(x, 28, 1, 1);
-
-            var isval = use_validation_data && n % 10 === 0 ? true : false;
-            return {x: x, label: labels[n], isval: isval};
-        };
-        var load_and_step = function () {
-            var sample = sample_training_instance();
-            return step(sample); // process this image
-        };
-        var step = function (sample) {
-            var x = sample.x;
-            var y = sample.label;
-
-            if (sample.isval) {
-                // use x to build our estimate of validation error
                 net.forward(x);
                 var yhat = net.getPrediction();
-                var val_acc = yhat === y ? 1.0 : 0.0;
-                //valAccWindow.add(val_acc);
-                return; // get out
+                return yhat;
+            };
+
+            // functions related to training
+            var sample_training_instance = function () {
+                // find an unloaded batch
+                var n = Math.floor(Math.random() * batch_size); // sample within the batch
+                // fetch the appropriate row of the training image and reshape into a Vol
+
+                var x = new convnetjs.Vol(28, 28, 1, 0.0);
+                var W = 28 * 28;
+                for (var i = 0; i < W; i++) {
+                    var ix = ((W * n) + i) * 4;
+                    x.w[i] = img[ix] / 255.0;
+                }
+
+                x = convnetjs.augment(x, 28, 1, 1);
+
+                var isval = use_validation_data && n % 10 === 0 ? true : false;
+                return {x: x, label: labels[n], isval: isval};
+            };
+            var load_and_step = function () {
+                var sample = sample_training_instance();
+                return step(sample); // process this image
+            };
+            var step = function (sample) {
+                var x = sample.x;
+                var y = sample.label;
+
+                if (sample.isval) {
+                    // use x to build our estimate of validation error
+                    net.forward(x);
+                    var yhat = net.getPrediction();
+                    var val_acc = yhat === y ? 1.0 : 0.0;
+                    //valAccWindow.add(val_acc);
+                    return; // get out
+                }
+
+                // train on it with network
+                var stats = trainer.train(x, y);
+                var lossx = stats.cost_loss;
+                var lossw = stats.l2_decay_loss;
+
+                // keep track of stats such as the average training error and loss
+                var yhat = net.getPrediction();
+                train_acc = train_acc + (yhat === y ? 1.0 : 0.0);
+                var output = {'lossx': lossx, 'lossw': lossw, 'train_acc': train_acc / max_iter};
+                return output;
+            };
+            var max_iter = 1000;
+            var output = [];
+            for (var i = 0; i < max_iter; i++) {
+                output = load_and_step();
             }
 
-            // train on it with network
-            var stats = trainer.train(x, y);
-            var lossx = stats.cost_loss;
-            var lossw = stats.l2_decay_loss;
+            var predict = [];
+            for (var i = 0; i < batch_size; i++) {
+                predict.push(internal_test(i, img, net));
+            }
 
-            // keep track of stats such as the average training error and loss
-            var yhat = net.getPrediction();
-            train_acc = train_acc + (yhat === y ? 1.0 : 0.0);
-            var output = {'lossx': lossx, 'lossw': lossw, 'train_acc': train_acc / max_iter};
-            return output;
-        };
-        var max_iter = 10000;
-        var output = [];
-        for (var i = 0; i < max_iter; i++) {
-            output = load_and_step();
-        }
-
-        var predict = [];
-        for (var i = 0; i < 201; i++) {
-            predict.push(internal_test(i, img, net));
-        }
-
-        pg.connect(connection, function (err, client, done) {
-            client.query("INSERT INTO readmeter_model_table (model) VALUES ($1)", [net], function (err, result) {
-                done();
-                if (err) {
-                    console.error(err);
-                    res.send("Error " + err);
-                }
-                else {
-                    res.send({'model': output, 'pred': predict});
-                }
+            pg.connect(connection, function (err, client, done) {
+                client.query("INSERT INTO readmeter_model_table (model) VALUES ($1)", [net], function (err, result) {
+                    done();
+                    if (err) {
+                        console.error(err);
+                        res.send("Error " + err);
+                    }
+                    else {
+                        res.send({'model': output, 'pred': predict});
+                    }
+                });
             });
         });
     });
+
     //var prob2 = net.forward(x);
     //console.log('probability that x is class 0: ' + prob2.w[0]);
 
@@ -262,42 +272,18 @@ router.post('/training', function (req, res) {
 
 // classification
 router.post('/read_malcolm', function (req, res) {
-    var contents = fs.readFileSync("./data/model_malcolm.json");
+    var contents = fs.readFileSync("./data/model_malcolm (4).json");
     var model = JSON.parse(contents);
     var net = new convnetjs.Net(); // create an empty network
     net.fromJSON(model);
 
-    //var layer_defs = [];
-    //layer_defs.push({type: 'input', out_sx: 28, out_sy: 28, out_depth: 1});
-    //layer_defs.push({type: 'conv', sx: 5, filters: 20, stride: 1, pad: 4, activation: 'relu'});
-    //layer_defs.push({type: 'pool', sx: 2, stride: 2});
-    //layer_defs.push({type: 'conv', sx: 5, filters: 50, stride: 1, pad: 4, activation: 'relu'});
-    //layer_defs.push({type: 'pool', sx: 2, stride: 2});
-    //layer_defs.push({type: 'fc', num_neurons: 500, activation: 'relu'});
-    //layer_defs.push({type: 'softmax', num_classes: 10});
-    //var layers = model.layers;
-    //net2 = new convnetjs.Net();
-    //net2.makeLayers(layer_defs);
-    //var json = net.toJSON();
-    //var str = JSON.stringify(json);
-    //fs.writeFile('./data/check.json', json, 'utf8');
-
-    //net.layers[1].biases = layers[1].biases;  //conv
-    //net.layers[1].filters = layers[1].filters;
-    //net.layers[4].biases = layers[4].biases;   //conv
-    //net.layers[4].filters = layers[4].filters;
-    //net.layers[7].biases = layers[7].biases;   //fc
-    //net.layers[7].filters = layers[7].filters;
-    //net.layers[9].biases = layers[9].biases; //softmax/fc??
-    //net.layers[9].filters = layers[9].filters;
-
     x = new convnetjs.Vol(28, 28, 1, 0.0);
-    var address = "./data/0.png";
+    var address = "./data/mnist_batch_0.png";
     getPixels(address, function (err, data) {
         var image = data.data;
         var W = 28 * 28;
         for (var i = 0; i < W; i++) {
-            var ix = i * 4;
+            var ix = W * 4 * 0 + i * 4;
             x.w[i] = image[ix] / 255.0;
         }
         var output_probabilities_vol = net.forward(x);

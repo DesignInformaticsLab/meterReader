@@ -134,7 +134,6 @@ $(document).ready(function() {
         //    }).catch(function (err) {
         //        console.error(err);
         //    });
-        test();
         //Jimp.read(img_address).then(
         //    function (lenna) {
         //        for (var iter=0;iter<num_img;iter++){
