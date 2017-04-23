@@ -16,6 +16,12 @@ a {
   bottom: 0px;
 }
 
+#frame {
+  position:absolute;
+  border: solid 2px red;
+  z-index: 99999;
+}
+
 #canvas {
   display:none;
   z-index: 99999;

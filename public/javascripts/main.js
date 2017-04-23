@@ -93,6 +93,15 @@ $(document).ready(function() {
 
 // read and send digits
 //var img_address = "https://upload.wikimedia.org/wikipedia/en/8/82/Water_meter_register.jpg";
+    var crop_height = 200;
+    var crop_width = 200;
+    var crop_top = 10;
+    var crop_left = 10;
+    var move = 200;
+    $("#frame").css("top",crop_top);
+    $("#frame").css("left",crop_left);
+    $("#frame").css("width",crop_width);
+    $("#frame").css("height",crop_height);
 
     function read_img(img_address){
         var canvas_small = [];
@@ -106,7 +115,7 @@ $(document).ready(function() {
                 for (var iter=0;iter<num_img;iter++){
                     var small_image = lenna.quality(100)
                         .greyscale()
-                        .crop( (48+59.25*iter)/1840*160, 289/3264*120, 58/1840*160, 68/3264*120 )
+                        .crop( crop_left+move*iter, crop_top, crop_length, crop_height)
                         .resize( 28, 28);
                         //.normalize()
                         //.contrast(1);
