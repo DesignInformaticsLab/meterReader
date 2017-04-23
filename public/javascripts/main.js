@@ -9,10 +9,10 @@ $(document).ready(function() {
     var video = $("#video")[0];
     var canvas = document.getElementById('canvas');
     var startbutton = document.getElementById('startbutton');
-    var num_img = 1;
+    var num_img = 6;
     var digit = Array(num_img);
-    var width = 160;
-    var height = 120;
+    var width = 1840;
+    var height = 3264;
 
     navigator.mediaDevices.getUserMedia(constraints)
         .then(function (mediaStream) {
@@ -95,21 +95,33 @@ $(document).ready(function() {
 //var img_address = "https://upload.wikimedia.org/wikipedia/en/8/82/Water_meter_register.jpg";
 
     function read_img(img_address){
+        var canvas_small = [];
+        for (var iter=0;iter<num_img;iter++){
+            canvas_small.push(document.getElementById('canvas'+(iter+1)));
+        }
+
+
         Jimp.read(img_address).then(
             function (lenna) {
                 for (var iter=0;iter<num_img;iter++){
-                    var small_image = lenna.quality(100)                 // set JPEG quality
-                        .greyscale()                 // set greyscale
-                        .contrast(1)
-                        //.posterize(10)
-                        //.resize( 100, 100 )
-                        //.crop( 70, 120, 60, 60 )
+                    var small_image = lenna.quality(100)
+                        .greyscale()
+                        .crop( (48+59.25*iter)/1840*160, 289/3264*120, 58/1840*160, 68/3264*120 )
+                        .resize( 28, 28);
+                        //.normalize()
+                        //.contrast(1);
+                    if (iter<2){
+                        small_image = small_image.invert();
+                    }
+                    //if (iter>3){
+                    //    small_image = small_image.greyscale();
+                    //}
 
-                        .resize( 28, 28).bitmap.data;
+                    small_image = small_image.bitmap.data;
 
-                    var context = canvas.getContext('2d');
-                    canvas.width = 28;
-                    canvas.height = 28;
+                    var context = canvas_small[iter].getContext('2d');
+                    canvas_small[iter].width = 28;
+                    canvas_small[iter].height = 28;
                     var imagarray = new Uint8ClampedArray(small_image);
                     var imgdata = new ImageData(imagarray, 28, 28);
                     context.putImageData(imgdata, 0, 0);
@@ -128,7 +140,7 @@ $(document).ready(function() {
                             }
                             console.log(pred);
                             digit[iter] = id;
-                            $( "#result" ).html( "<a>"+ id + "</a>" );
+                            $( "#result"+(parseInt(iter)+1) ).html( "<a>"+ id + "</a>" );
                         }
                     });
                 }

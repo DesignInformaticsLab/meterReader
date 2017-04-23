@@ -34,7 +34,7 @@ router.get('/meterReader', function (req, res, next) {
 
 // classification
 router.post('/read', function (req, res) {
-    var contents = fs.readFileSync("./data/model_meterreader.json");
+    var contents = fs.readFileSync("./data/model_MNIST.json");
     var model = JSON.parse(contents);
     var net = new convnetjs.Net(); // create an empty network
     net.fromJSON(model);
