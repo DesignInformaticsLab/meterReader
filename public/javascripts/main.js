@@ -100,7 +100,7 @@ $(document).ready(function() {
     var move = 200;
     $("#frame").css("top",crop_top);
     $("#frame").css("left",crop_left);
-    $("#frame").css("width",crop_width );
+    $("#frame").css("width",crop_width*6 );
     $("#frame").css("height",crop_height);
 
     function read_img(img_address){
@@ -115,7 +115,7 @@ $(document).ready(function() {
                 for (var iter=0;iter<num_img;iter++){
                     var small_image = lenna.quality(100)
                         .greyscale()
-                        .crop( crop_left+move*iter, crop_top, crop_length, crop_height)
+                        .crop( crop_left+move*iter, crop_top, crop_width, crop_height)
                         .resize( 28, 28);
                         //.normalize()
                         //.contrast(1);
