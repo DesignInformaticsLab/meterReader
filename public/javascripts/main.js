@@ -95,12 +95,12 @@ $(document).ready(function() {
 //var img_address = "https://upload.wikimedia.org/wikipedia/en/8/82/Water_meter_register.jpg";
     var crop_height = 200;
     var crop_width = 200;
-    var crop_top = 10;
-    var crop_left = 10;
+    var crop_top = 300;
+    var crop_left = 300;
     var move = 200;
     $("#frame").css("top",crop_top);
     $("#frame").css("left",crop_left);
-    $("#frame").css("width",crop_width);
+    $("#frame").css("width",crop_width + move*6);
     $("#frame").css("height",crop_height);
 
     function read_img(img_address){
