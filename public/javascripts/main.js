@@ -93,10 +93,10 @@ $(document).ready(function() {
 
 // read and send digits
 //var img_address = "https://upload.wikimedia.org/wikipedia/en/8/82/Water_meter_register.jpg";
-    var crop_height = 150;
-    var crop_width = 150;
-    var crop_top = 600;
-    var crop_left = 250;
+    var crop_height = 130;
+    var crop_width = 130;
+    var crop_top = 630;
+    var crop_left = 230;
     var move = 200;
     $("#frame").css("top",crop_top);
     $("#frame").css("left",crop_left);
