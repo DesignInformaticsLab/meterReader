@@ -9,7 +9,7 @@ $(document).ready(function() {
     var video = $("#video")[0];
     var canvas = document.getElementById('canvas');
     var startbutton = document.getElementById('startbutton');
-    var num_img = 6;
+    var num_img = 1;
     var digit = Array(num_img);
     var width = 1840;
     var height = 3264;
@@ -100,7 +100,7 @@ $(document).ready(function() {
     var move = 200;
     $("#frame").css("top",crop_top);
     $("#frame").css("left",crop_left);
-    $("#frame").css("width",crop_width*6 );
+    $("#frame").css("width",crop_width );
     $("#frame").css("height",crop_height);
 
     function read_img(img_address){
@@ -114,14 +114,14 @@ $(document).ready(function() {
             function (lenna) {
                 for (var iter=0;iter<num_img;iter++){
                     var small_image = lenna.quality(100)
-                        //.greyscale()
+                        .greyscale()
                         .crop( crop_left+move*iter, crop_top, crop_width, crop_height)
-                        .resize( 28, 28);
+                        .resize( 28, 28)
                         //.normalize()
-                        //.contrast(1);
-                    if (iter<2){
-                        small_image = small_image.invert();
-                    }
+                        .contrast(1);
+                    //if (iter<2){
+                    //    small_image = small_image.invert();
+                    //}
                     //if (iter>3){
                     //    small_image = small_image.greyscale();
                     //}
