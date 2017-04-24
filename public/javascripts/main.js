@@ -117,7 +117,7 @@ $(document).ready(function() {
                         .greyscale()
                         .crop( crop_left+move*iter, crop_top, crop_width, crop_height)
                         .resize( 28, 28)
-                        //.normalize()
+                        .normalize()
                         .contrast(1);
                     //if (iter<2){
                     //    small_image = small_image.invert();
