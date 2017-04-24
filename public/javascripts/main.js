@@ -117,8 +117,8 @@ $(document).ready(function() {
                         .greyscale()
                         .crop( crop_left+move*iter, crop_top, crop_width, crop_height)
                         .resize( 28, 28)
-                        //.normalize()
-                        //.contrast(1);
+                        .normalize()
+                        .contrast(1);
                     //if (iter<2){
                     //    small_image = small_image.invert();
                     //}
@@ -129,8 +129,8 @@ $(document).ready(function() {
                     small_image = small_image.bitmap.data;
 
                     var context = canvas_small[iter].getContext('2d');
-                    canvas_small[iter].width = 28*2;
-                    canvas_small[iter].height = 28*2;
+                    canvas_small[iter].width = 28;
+                    canvas_small[iter].height = 28;
                     var imagarray = new Uint8ClampedArray(small_image);
                     var imgdata = new ImageData(imagarray, 28, 28);
                     context.putImageData(imgdata, 0, 0);
