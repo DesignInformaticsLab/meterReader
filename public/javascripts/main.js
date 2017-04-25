@@ -122,10 +122,10 @@ $(document).ready(function() {
                     var small_image = lenna.quality(100)
                         .greyscale()
                         .crop( crop_left+move*iter, crop_top, crop_width, crop_height)
-                        .resize( 280, 280)
+                        .resize( 28, 28)
                         .flip(true,false)
-                        //.normalize()
-                        //.contrast(1);
+                        .normalize()
+                        .contrast(1);
                     //if (iter<2){
                     //    small_image = small_image.invert();
                     //}
@@ -136,10 +136,10 @@ $(document).ready(function() {
                     small_image = small_image.bitmap.data;
 
                     var context = canvas_small[iter].getContext('2d');
-                    canvas_small[iter].width = 280;
-                    canvas_small[iter].height = 280;
+                    canvas_small[iter].width = 28;
+                    canvas_small[iter].height = 28;
                     var imagarray = new Uint8ClampedArray(small_image);
-                    var imgdata = new ImageData(imagarray, 280, 280);
+                    var imgdata = new ImageData(imagarray, 28, 28);
                     context.putImageData(imgdata, 0, 0);
 
                     $.post('/read',{'image':Array.from(small_image), 'id':iter}, function(data){
