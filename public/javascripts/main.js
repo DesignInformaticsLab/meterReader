@@ -93,13 +93,19 @@ $(document).ready(function() {
 
 // read and send digits
 //var img_address = "https://upload.wikimedia.org/wikipedia/en/8/82/Water_meter_register.jpg";
+    var video_left = parseInt($("#video").css("left"));
+    var video_top = parseInt($("#video").css("top"));
+    var video_width = $("#video").width();
+    var video_height = $("#video").height();
+
     var crop_height = 100;
     var crop_width = 100;
-    var crop_top = 630;
-    var crop_left = 230;
+    var crop_top = 0;
+    var crop_left = 0;
     var move = 200;
-    $("#frame").css("top",crop_top);
-    $("#frame").css("left",crop_left);
+
+    $("#frame").css("top",video_top+crop_top);
+    $("#frame").css("left",video_left+crop_left);
     $("#frame").css("width",crop_width );
     $("#frame").css("height",crop_height);
 
@@ -114,11 +120,11 @@ $(document).ready(function() {
             function (lenna) {
                 for (var iter=0;iter<num_img;iter++){
                     var small_image = lenna.quality(100)
-                        .greyscale()
+                        //.greyscale()
                         .crop( crop_left+move*iter, crop_top, crop_width, crop_height)
                         .resize( 28, 28)
-                        .normalize()
-                        .contrast(1);
+                        //.normalize()
+                        //.contrast(1);
                     //if (iter<2){
                     //    small_image = small_image.invert();
                     //}
