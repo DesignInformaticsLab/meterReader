@@ -9,7 +9,7 @@ $(document).ready(function() {
     var video = $("#video")[0];
     var canvas = document.getElementById('canvas');
     var startbutton = document.getElementById('startbutton');
-    var num_img = 6;
+    var num_img = 1;
     var digit = Array(num_img);
     var width = 1840;
     var height = 3264;
@@ -98,8 +98,8 @@ $(document).ready(function() {
     var video_width = $("#video").width();
     var video_height = $("#video").height();
 
-    var crop_height = 100;
-    var crop_width = 100;
+    var crop_height = 300;
+    var crop_width = 300;
     var crop_top = 0;
     var crop_left = 0;
     var move = 200;
@@ -122,7 +122,7 @@ $(document).ready(function() {
                     var small_image = lenna.quality(100)
                         //.greyscale()
                         .crop( crop_left+move*iter, crop_top, crop_width, crop_height)
-                        .resize( 28, 28)
+                        .resize( 280, 280)
                         //.normalize()
                         //.contrast(1);
                     //if (iter<2){
@@ -135,10 +135,10 @@ $(document).ready(function() {
                     small_image = small_image.bitmap.data;
 
                     var context = canvas_small[iter].getContext('2d');
-                    canvas_small[iter].width = 28;
-                    canvas_small[iter].height = 28;
+                    canvas_small[iter].width = 280;
+                    canvas_small[iter].height = 280;
                     var imagarray = new Uint8ClampedArray(small_image);
-                    var imgdata = new ImageData(imagarray, 28, 28);
+                    var imgdata = new ImageData(imagarray, 280, 280);
                     context.putImageData(imgdata, 0, 0);
 
                     $.post('/read',{'image':Array.from(small_image), 'id':iter}, function(data){
