@@ -101,7 +101,7 @@ $(document).ready(function() {
     var crop_height = 95;
     var crop_width = 25;
     var crop_top = 225;
-    var crop_left = 95;
+    var crop_left = 120;
     var move = 30;
 
     $("#frame").css("top",video_top+200+100);
