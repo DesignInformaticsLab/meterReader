@@ -105,8 +105,8 @@ $(document).ready(function() {
     var move = 200;
 
     $("#frame").css("top",video_top+crop_top);
-    $("#frame").css("left",video_left+crop_left);
-    $("#frame").css("width",crop_width );
+    $("#frame").css("left",video_left+crop_left+200);
+    $("#frame").css("width",crop_width*6 );
     $("#frame").css("height",crop_height);
 
     function read_img(img_address){
