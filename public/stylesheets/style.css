@@ -32,13 +32,17 @@ a {
   top:0px;
   left:200px;
   position: absolute;
+  width: 100px;
+  height: 100px;
 }
 #canvas2 {
   /*display:none;*/
   z-index: 99999;
   top:0px;
-  left:230px;
+  left:330px;
   position: absolute;
+  width: 100px;
+  height: 100px;
 }
 #canvas3 {
   /*display:none;*/

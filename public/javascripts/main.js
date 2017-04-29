@@ -9,7 +9,7 @@ $(document).ready(function() {
     var video = $("#video")[0];
     var canvas = document.getElementById('canvas');
     var startbutton = document.getElementById('startbutton');
-    var num_img = 1;
+    var num_img = 2;
     var digit = Array(num_img);
     var width = 300;
     var height = 400;
@@ -112,7 +112,7 @@ $(document).ready(function() {
     function read_img(img_address){
         var canvas_small = [];
         for (var iter=0;iter<num_img;iter++){
-            canvas_small.push(document.getElementById('canvas'+(iter+1)));
+            canvas_small.push(document.getElementById('canvas'+(parseInt(iter+1))));
         }
 
 
@@ -121,8 +121,14 @@ $(document).ready(function() {
                 for (var iter=0;iter<num_img;iter++){
                     var small_image = lenna.quality(100)
                         .greyscale()
-                        .crop( crop_left+move*iter, crop_top, crop_width, crop_height)
-                        .resize( 28, 28)
+                    if (iter == 0){
+                        small_image = small_image.crop( 95, 225, 25, 95);
+                       }
+                    if (iter == 1){
+                        small_image = small_image.crop( 120, 245, 50, 60);
+                    }
+                        //.crop( crop_left+move*iter, crop_top, crop_width, crop_height)
+                        small_image.resize( 28, 28)
                         .rotate(180,false)
                         .flip(true,false)
                         .normalize()
