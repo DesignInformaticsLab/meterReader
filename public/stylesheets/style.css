@@ -32,6 +32,8 @@ a {
   top:0px;
   left:200px;
   position: absolute;
+  width: 100px;
+  height: 100px;
 }
 #canvas2 {
   /*display:none;*/
