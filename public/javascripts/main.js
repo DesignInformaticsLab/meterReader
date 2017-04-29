@@ -100,8 +100,8 @@ $(document).ready(function() {
 
     var crop_height = 200;
     var crop_width = 150;
-    var crop_top = 200;
-    var crop_left = 0;
+    var crop_top = 260;
+    var crop_left = 130;
     var move = 200;
 
     $("#frame").css("top",video_top+200+100);
