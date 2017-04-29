@@ -98,10 +98,10 @@ $(document).ready(function() {
     var video_width = $("#video").width();
     var video_height = $("#video").height();
 
-    var crop_height = 150;
-    var crop_width = 100;
+    var crop_height = 120;
+    var crop_width = 90;
     var crop_top = 220;
-    var crop_left = 20;
+    var crop_left = 40;
     var move = 200;
 
     $("#frame").css("top",video_top+200+100);
