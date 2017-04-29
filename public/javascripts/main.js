@@ -98,9 +98,9 @@ $(document).ready(function() {
     var video_width = $("#video").width();
     var video_height = $("#video").height();
 
-    var crop_height = 95;
-    var crop_width = 25;
-    var crop_top = 225;
+    var crop_height = 75;
+    var crop_width = 50;
+    var crop_top = 235;
     var crop_left = 120;
     var move = 30;
 
