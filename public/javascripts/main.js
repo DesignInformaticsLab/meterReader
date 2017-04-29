@@ -11,8 +11,8 @@ $(document).ready(function() {
     var startbutton = document.getElementById('startbutton');
     var num_img = 1;
     var digit = Array(num_img);
-    var width = 280;
-    var height = 280;
+    var width = 180;
+    var height = 360;
 
     navigator.mediaDevices.getUserMedia(constraints)
         .then(function (mediaStream) {
@@ -122,7 +122,7 @@ $(document).ready(function() {
                     var small_image = lenna.quality(100)
                         .greyscale()
                         //.crop( crop_left+move*iter, crop_top, crop_width, crop_height)
-                        .resize( 280, 280)
+                        .resize( 28, 28)
                         .rotate(180,false)
                         .flip(true,false)
                         .normalize()
