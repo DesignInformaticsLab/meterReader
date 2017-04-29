@@ -112,7 +112,7 @@ $(document).ready(function() {
     function read_img(img_address){
         var canvas_small = [];
         for (var iter=0;iter<num_img;iter++){
-            canvas_small.push(document.getElementById('canvas'+(parseInt(iter+1))));
+            canvas_small.push(document.getElementById("canvas"+(parseInt(iter+1))));
         }
 
 
