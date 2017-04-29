@@ -104,10 +104,10 @@ $(document).ready(function() {
     var crop_left = 0;
     var move = 200;
 
-    $("#frame").css("top",video_top+crop_top);
-    $("#frame").css("left",video_left+crop_left+200);
-    $("#frame").css("width",crop_width*6 );
-    $("#frame").css("height",crop_height);
+    $("#frame").css("top",video_top+crop_top+100);
+    $("#frame").css("left",video_left+crop_left+20);
+    $("#frame").css("width",crop_width*4 );
+    $("#frame").css("height",crop_height*2);
 
     function read_img(img_address){
         var canvas_small = [];
