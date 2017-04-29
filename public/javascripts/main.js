@@ -11,8 +11,8 @@ $(document).ready(function() {
     var startbutton = document.getElementById('startbutton');
     var num_img = 1;
     var digit = Array(num_img);
-    var width = 180;
-    var height = 360;
+    var width = 300;
+    var height = 400;
 
     navigator.mediaDevices.getUserMedia(constraints)
         .then(function (mediaStream) {
@@ -98,9 +98,9 @@ $(document).ready(function() {
     var video_width = $("#video").width();
     var video_height = $("#video").height();
 
-    var crop_height = 180;
-    var crop_width = 90;
-    var crop_top = 0;
+    var crop_height = 200;
+    var crop_width = 150;
+    var crop_top = 200;
     var crop_left = 0;
     var move = 200;
 
