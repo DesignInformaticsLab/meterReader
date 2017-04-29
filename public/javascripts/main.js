@@ -9,7 +9,7 @@ $(document).ready(function() {
     var video = $("#video")[0];
     var canvas = document.getElementById('canvas');
     var startbutton = document.getElementById('startbutton');
-    var num_img = 1;
+    var num_img = 2;
     var digit = Array(num_img);
     var width = 300;
     var height = 400;
@@ -98,11 +98,11 @@ $(document).ready(function() {
     var video_width = $("#video").width();
     var video_height = $("#video").height();
 
-    var crop_height = 120;
-    var crop_width = 40;
+    var crop_height = 100;
+    var crop_width = 30;
     var crop_top = 220;
-    var crop_left = 80;
-    var move = 0;
+    var crop_left = 90;
+    var move = 30;
 
     $("#frame").css("top",video_top+200+100);
     $("#frame").css("left",video_left+0);
