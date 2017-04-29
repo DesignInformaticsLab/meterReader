@@ -111,17 +111,16 @@ $(document).ready(function() {
 
     function read_img(img_address){
         var canvas_small = [];
-        //for (var iter=0;iter<num_img;iter++){
-            canvas_small.push(document.getElementById('canvas1'));
-            canvas_small.push(document.getElementById('canvas2'));
-        //}
+        for (var iter=0;iter<num_img;iter++){
+            canvas_small.push(document.getElementById('canvas'+(iter+1)));
+        }
 
 
         Jimp.read(img_address).then(
             function (lenna) {
                 for (var iter=0;iter<num_img;iter++){
                     var small_image = lenna.quality(100)
-                        .greyscale()
+                        .greyscale();
                     if (iter == 0){
                         small_image = small_image.crop( 95, 225, 25, 95);
                        }
@@ -133,7 +132,8 @@ $(document).ready(function() {
                         .rotate(180,false)
                         .flip(true,false)
                         .normalize()
-                        .contrast(1);
+                        .contrast(1)
+                        .invert();
                     //if (iter<2){
                     //    small_image = small_image.invert();
                     //}
