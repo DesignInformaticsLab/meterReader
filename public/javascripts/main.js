@@ -11,8 +11,8 @@ $(document).ready(function() {
     var startbutton = document.getElementById('startbutton');
     var num_img = 1;
     var digit = Array(num_img);
-    var width = 300;
-    var height = 300;
+    var width = 28;
+    var height = 28;
 
     navigator.mediaDevices.getUserMedia(constraints)
         .then(function (mediaStream) {
