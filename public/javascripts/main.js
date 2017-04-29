@@ -124,7 +124,7 @@ $(document).ready(function() {
                         //.crop( crop_left+move*iter, crop_top, crop_width, crop_height)
                         .resize( 28, 28)
                         .flip(false,false)
-                        //.rotate(180)
+                        .rotate(180,false)
                         .normalize()
                         .contrast(1);
                     //if (iter<2){
