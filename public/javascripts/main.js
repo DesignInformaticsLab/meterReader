@@ -115,63 +115,62 @@ $(document).ready(function() {
             canvas_small.push(document.getElementById('canvas'+(iter+1)));
         }
 
+        for (var iter=0;iter<num_img;iter++){
+            read_image_i(img_address, iter, canvas_small);
+        }
+    }
+    function read_image_i(src,iter, canvas_small){
+        Jimp.read(src).then(function (lenna) {
+            var small_image = lenna.quality(100)
+                .greyscale();
+            if (iter == 1){
+                small_image = small_image.crop( 100, 245, 40, 60);
+            }
+            if (iter == 0){
+                small_image = small_image.crop( 120, 245, 50, 60);
+            }
+            //.crop( crop_left+move*iter, crop_top, crop_width, crop_height)
+            small_image.resize( 28, 28)
+                .rotate(180,false)
+                .flip(true,false)
+                .normalize()
+                .contrast(1);
+            //if (iter<2){
+            //    small_image = small_image.invert();
+            //}
+            //if (iter>3){
+            //    small_image = small_image.greyscale();
+            //}
 
-        Jimp.read(img_address).then(
-            function (lenna) {
-                for (var iter=0;iter<num_img;iter++){
-                    var small_image = lenna.quality(100)
-                        .greyscale();
-                    if (iter == 1){
-                        small_image = small_image.crop( 100, 245, 40, 60);
-                       }
-                    if (iter == 0){
-                        small_image = small_image.crop( 120, 245, 50, 60);
+            small_image = small_image.bitmap.data;
+
+            var context = canvas_small[iter].getContext('2d');
+            canvas_small[iter].width = 28;
+            canvas_small[iter].height = 28;
+            var imagarray = new Uint8ClampedArray(small_image);
+            var imgdata = new ImageData(imagarray, 28, 28);
+            context.putImageData(imgdata, 0, 0);
+
+            $.post('/read',{'image':Array.from(small_image), 'id':iter}, function(data){
+                if(data!=null){
+                    var iter = data.id;
+                    var pred = data.prob;
+                    //console.log(pred);
+                    var max = 0;
+                    var id = -1;
+                    for (var i=0;i<10;i++){
+                        var v = pred.w[i];
+                        max = v > max? v:max;
+                        if (max==v) {id = i;}
                     }
-                        //.crop( crop_left+move*iter, crop_top, crop_width, crop_height)
-                        small_image.resize( 28, 28)
-                        .rotate(180,false)
-                        .flip(true,false)
-                        .normalize()
-                        .contrast(1)
-                        .invert();
-                    //if (iter<2){
-                    //    small_image = small_image.invert();
-                    //}
-                    //if (iter>3){
-                    //    small_image = small_image.greyscale();
-                    //}
-
-                    small_image = small_image.bitmap.data;
-
-                    var context = canvas_small[iter].getContext('2d');
-                    canvas_small[iter].width = 28;
-                    canvas_small[iter].height = 28;
-                    var imagarray = new Uint8ClampedArray(small_image);
-                    var imgdata = new ImageData(imagarray, 28, 28);
-                    context.putImageData(imgdata, 0, 0);
-
-                    $.post('/read',{'image':Array.from(small_image), 'id':iter}, function(data){
-                        if(data!=null){
-                            var iter = data.id;
-                            var pred = data.prob;
-                            //console.log(pred);
-                            var max = 0;
-                            var id = -1;
-                           for (var i=0;i<10;i++){
-                                var v = pred.w[i];
-                                max = v > max? v:max;
-                                if (max==v) {id = i;}
-                            }
-                            console.log(pred);
-                            digit[iter] = id;
-                            $( "#result"+(parseInt(iter)+1) ).html( "<a>"+ id + "</a>" );
-                        }
-                    });
+                    console.log(pred);
+                    digit[iter] = id;
+                    $( "#result"+(parseInt(iter)+1) ).html( "<a>"+ id + "</a>" );
                 }
-            }).catch(function (err) {
-                console.error(err);
             });
-
+        }).catch(function (err) {
+            console.error(err);
+        });
     }
     //train();
 });
