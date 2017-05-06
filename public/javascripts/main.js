@@ -124,7 +124,7 @@ $(document).ready(function() {
             var small_image = lenna.quality(100)
                 .greyscale();
             if (iter == 0){
-                small_image = small_image.crop( 50, 240, 40, 60);
+                small_image = small_image.crop( 52, 240, 45, 58);
             }
             if (iter == 1) {
                 small_image = small_image.crop(90, 240, 35, 60);
@@ -136,10 +136,10 @@ $(document).ready(function() {
                 small_image = small_image.crop( 162, 240, 38, 60);
             }
             if (iter == 4){
-                small_image = small_image.crop( 200, 240, 50, 60);
+                small_image = small_image.crop( 203, 243, 40, 55);
             }
             if (iter == 5){
-                small_image = small_image.crop( 230, 240, 50, 60);
+                small_image = small_image.crop( 240, 243, 35, 55);
             }
             //.crop( crop_left+move*iter, crop_top, crop_width, crop_height)
             small_image.resize( 28, 28)
