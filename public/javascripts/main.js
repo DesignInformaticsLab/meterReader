@@ -124,19 +124,19 @@ $(document).ready(function() {
             var small_image = lenna.quality(100)
                 .greyscale();
             if (iter == 0){
-                small_image = small_image.crop( 60, 245, 40, 60);
+                small_image = small_image.crop( 50, 240, 40, 60);
                 //small_image = small_image.invert();
             }
             if (iter == 1){
-                small_image = small_image.crop( 100, 245, 40, 60);
+                small_image = small_image.crop( 90, 24, 35, 60);
                 //small_image = small_image.invert();
             }
             if (iter == 2){
-                small_image = small_image.crop( 130, 245, 50, 60);
+                small_image = small_image.crop( 120, 245, 50, 60);
                 //small_image = small_image.invert();
             }
             if (iter == 3){
-                small_image = small_image.crop( 150, 245, 50, 60);
+                small_image = small_image.crop( 170, 240, 50, 60);
                 //small_image = small_image.invert();
             }
             if (iter == 4){
