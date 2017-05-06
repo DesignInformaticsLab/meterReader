@@ -128,7 +128,7 @@ $(document).ready(function() {
                 //small_image = small_image.invert();
             }
             if (iter == 1){
-                small_image = small_image.crop( 90, 24, 35, 60);
+                small_image = small_image.crop( 90, 240, 35, 60);
                 //small_image = small_image.invert();
             }
             if (iter == 2){
