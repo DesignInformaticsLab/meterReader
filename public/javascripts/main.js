@@ -123,19 +123,21 @@ $(document).ready(function() {
         Jimp.read(src).then(function (lenna) {
             var small_image = lenna.quality(100)
                 .greyscale();
-            if (iter == 1){
-                small_image = small_image.crop( 120, 245, 50, 60);
-                small_image = small_image.invert();
-            }
             if (iter == 0){
+                small_image = small_image.crop( 60, 245, 40, 60);
+                //small_image = small_image.invert();
+            }
+            if (iter == 1){
                 small_image = small_image.crop( 100, 245, 40, 60);
-                small_image = small_image.invert();
+                //small_image = small_image.invert();
             }
             if (iter == 2){
-                small_image = small_image.crop( 140, 245, 50, 60);
+                small_image = small_image.crop( 130, 245, 50, 60);
+                //small_image = small_image.invert();
             }
             if (iter == 3){
-                small_image = small_image.crop( 160, 245, 50, 60);
+                small_image = small_image.crop( 150, 245, 50, 60);
+                //small_image = small_image.invert();
             }
             if (iter == 4){
                 small_image = small_image.crop( 180, 245, 50, 60);
