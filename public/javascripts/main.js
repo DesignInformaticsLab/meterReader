@@ -125,11 +125,11 @@ $(document).ready(function() {
                 .greyscale();
             if (iter == 0){
                 small_image = small_image.crop( 50, 240, 40, 60);
-                //small_image = small_image.invert();
+                small_image = small_image.invert();
             }
             if (iter == 1){
                 small_image = small_image.crop( 90, 240, 35, 60);
-                //small_image = small_image.invert();
+                small_image = small_image.invert();
             }
             if (iter == 2){
                 small_image = small_image.crop( 120, 245, 50, 60);
@@ -137,7 +137,7 @@ $(document).ready(function() {
             }
             if (iter == 3){
                 small_image = small_image.crop( 162, 240, 35, 60);
-                small_image = small_image.invert();
+                //small_image = small_image.invert();
             }
             if (iter == 4){
                 small_image = small_image.crop( 200, 240, 50, 60);
