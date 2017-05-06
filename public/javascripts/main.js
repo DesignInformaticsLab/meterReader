@@ -9,7 +9,7 @@ $(document).ready(function() {
     var video = $("#video")[0];
     var canvas = document.getElementById('canvas');
     var startbutton = document.getElementById('startbutton');
-    var num_img = 2;
+    var num_img = 6;
     var digit = Array(num_img);
     var width = 300;
     var height = 400;
