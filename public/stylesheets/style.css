@@ -16,11 +16,7 @@ a {
   bottom: 0px;
 }
 
-#frame {
-  position:absolute;
-  border: solid 2px red;
-  z-index: 99999;
-}
+
 
 #canvas {
   display:none;
@@ -30,7 +26,7 @@ a {
   /*display:none;*/
   z-index: 99999;
   top:0px;
-  left:110px;
+  left:200px;
   position: absolute;
   width: 100px;
   height:100px;
@@ -39,7 +35,7 @@ a {
   /*display:none;*/
   z-index: 99999;
   top:0px;
-  left:220px;
+  left:320px;
   position: absolute;
   width: 100px;
   height: 100px;
@@ -48,7 +44,7 @@ a {
   /*display:none;*/
   z-index: 99999;
   top:0px;
-  left:330px;
+  left:440px;
   position: absolute;
   width: 100px;
   height: 100px;
@@ -57,7 +53,7 @@ a {
   /*display:none;*/
   z-index: 99999;
   top:0px;
-  left:440px;
+  left:560px;
   position: absolute;
   width: 100px;
   height: 100px;
@@ -66,7 +62,7 @@ a {
   /*display:none;*/
   z-index: 99999;
   top:0px;
-  left:550px;
+  left:680px;
   position: absolute;
   width: 100px;
   height: 100px;
@@ -75,7 +71,7 @@ a {
   /*display:none;*/
   z-index: 99999;
   top:0px;
-  left:660px;
+  left:800px;
   position: absolute;
   width: 100px;
   height: 100px;
