@@ -124,7 +124,7 @@ $(document).ready(function() {
             var small_image = lenna.quality(100)
                 .greyscale();
             if (iter == 0){
-                small_image = small_image.crop( 55, 238, 55, 60);
+                small_image = small_image.crop( 50, 238, 55, 60);
             }
             if (iter == 1) {
                 small_image = small_image.crop(90, 240, 35, 60);
