@@ -30,55 +30,55 @@ a {
   /*display:none;*/
   z-index: 99999;
   top:0px;
-  left:200px;
+  left:100px;
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
 }
 #canvas2 {
   /*display:none;*/
   z-index: 99999;
   top:0px;
-  left:320px;
+  left:200px;
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
 }
 #canvas3 {
   /*display:none;*/
   z-index: 99999;
-  top:440px;
+  top:300px;
   left:260px;
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
 }
 #canvas4 {
   /*display:none;*/
   z-index: 99999;
-  top:560px;
+  top:400px;
   left:290px;
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
 }
 #canvas5 {
   /*display:none;*/
   z-index: 99999;
   top:0px;
-  left:680px;
+  left:500px;
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
 }
 #canvas6 {
   /*display:none;*/
   z-index: 99999;
   top:0px;
-  left:800px;
+  left:600px;
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
 }
 
 .output {
