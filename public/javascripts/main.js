@@ -136,14 +136,14 @@ $(document).ready(function() {
                 //small_image = small_image.invert();
             }
             if (iter == 3){
-                small_image = small_image.crop( 170, 240, 50, 60);
+                small_image = small_image.crop( 160, 240, 40, 60);
                 //small_image = small_image.invert();
             }
             if (iter == 4){
-                small_image = small_image.crop( 180, 245, 50, 60);
+                small_image = small_image.crop( 200, 240, 50, 60);
             }
             if (iter == 5){
-                small_image = small_image.crop( 200, 245, 50, 60);
+                small_image = small_image.crop( 230, 240, 50, 60);
             }
             //.crop( crop_left+move*iter, crop_top, crop_width, crop_height)
             small_image.resize( 28, 28)
