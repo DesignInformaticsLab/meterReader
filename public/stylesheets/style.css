@@ -39,7 +39,7 @@ a {
   /*display:none;*/
   z-index: 99999;
   top:0px;
-  left:330px;
+  left:320px;
   position: absolute;
   width: 100px;
   height: 100px;
@@ -47,30 +47,38 @@ a {
 #canvas3 {
   /*display:none;*/
   z-index: 99999;
-  top:0px;
+  top:440px;
   left:260px;
   position: absolute;
+  width: 100px;
+  height: 100px;
 }
 #canvas4 {
   /*display:none;*/
   z-index: 99999;
-  top:0px;
+  top:560px;
   left:290px;
   position: absolute;
+  width: 100px;
+  height: 100px;
 }
 #canvas5 {
   /*display:none;*/
   z-index: 99999;
   top:0px;
-  left:320px;
+  left:680px;
   position: absolute;
+  width: 100px;
+  height: 100px;
 }
 #canvas6 {
   /*display:none;*/
   z-index: 99999;
   top:0px;
-  left:350px;
+  left:800px;
   position: absolute;
+  width: 100px;
+  height: 100px;
 }
 
 .output {
