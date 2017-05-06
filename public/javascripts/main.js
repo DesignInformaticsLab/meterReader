@@ -123,10 +123,22 @@ $(document).ready(function() {
         Jimp.read(src).then(function (lenna) {
             var small_image = lenna.quality(100)
                 .greyscale();
+            if (iter == 0){
+                small_image = small_image.crop( 120, 245, 50, 60);
+            }
             if (iter == 1){
                 small_image = small_image.crop( 100, 245, 40, 60);
             }
-            if (iter == 0){
+            if (iter == 2){
+                small_image = small_image.crop( 120, 245, 50, 60);
+            }
+            if (iter == 3){
+                small_image = small_image.crop( 120, 245, 50, 60);
+            }
+            if (iter == 4){
+                small_image = small_image.crop( 120, 245, 50, 60);
+            }
+            if (iter == 5){
                 small_image = small_image.crop( 120, 245, 50, 60);
             }
             //.crop( crop_left+move*iter, crop_top, crop_width, crop_height)
