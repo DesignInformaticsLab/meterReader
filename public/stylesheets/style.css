@@ -30,7 +30,7 @@ a {
   /*display:none;*/
   z-index: 99999;
   top:0px;
-  left:100px;
+  left:30px;
   position: absolute;
   width: 90px;
   height: 90px;
@@ -39,7 +39,7 @@ a {
   /*display:none;*/
   z-index: 99999;
   top:0px;
-  left:200px;
+  left:130px;
   position: absolute;
   width: 90px;
   height: 90px;
@@ -47,7 +47,7 @@ a {
 #canvas3 {
   /*display:none;*/
   z-index: 99999;
-  top:300px;
+  top:230px;
   left:260px;
   position: absolute;
   width: 90px;
@@ -56,7 +56,7 @@ a {
 #canvas4 {
   /*display:none;*/
   z-index: 99999;
-  top:400px;
+  top:330px;
   left:290px;
   position: absolute;
   width: 90px;
@@ -66,7 +66,7 @@ a {
   /*display:none;*/
   z-index: 99999;
   top:0px;
-  left:500px;
+  left:430px;
   position: absolute;
   width: 90px;
   height: 90px;
@@ -75,7 +75,7 @@ a {
   /*display:none;*/
   z-index: 99999;
   top:0px;
-  left:600px;
+  left:530px;
   position: absolute;
   width: 90px;
   height: 90px;
